@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { BrowserWindow, app } from 'electron';
+const { app, BrowserWindow, BrowserView, ipcMain, shell, clipboard, Notification, screen  } = require('electron')
 
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
