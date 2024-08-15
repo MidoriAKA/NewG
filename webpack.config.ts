@@ -14,6 +14,16 @@ const common: Configuration = {
   // モジュール解決に参照するファイル拡張子
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
+    alias: {
+      // プロジェクトルートの 'src' ディレクトリをエイリアス '@' として登録
+      '@': `${__dirname}/src`,
+      // プロジェクトルートの 'src/web' ディレクトリをエイリアス '@web' として登録
+      '@web': `${__dirname}/src/web`,
+      // プロジェクトルートの 'src/web/styles' ディレクトリをエイリアス '@styles' として登録
+      '@styles': `${__dirname}/src/web/styles`,
+      // プロジェクトルートの 'src/web/components' ディレクトリをエイリアス '@components' として登録
+      '@components': `${__dirname}/src/web/components`,
+    }
   },
   /**
    * macOS でビルドに失敗する場合のワークアラウンド

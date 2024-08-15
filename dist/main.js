@@ -4,7 +4,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_path_1 = __importDefault(require("node:path"));
-const electron_1 = require("electron");
+const { app, BrowserWindow, BrowserView, ipcMain, shell, clipboard, Notification, screen } = require('electron');
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
     require("electron-reload")(__dirname, {
@@ -15,9 +15,13 @@ if (process.env.NODE_ENV === "development") {
         hardResetMethod: "exit",
     });
 }
-electron_1.app.whenReady().then(() => {
+app.whenReady().then(() => {
     // アプリの起動イベント発火で BrowserWindow インスタンスを作成
-    const mainWindow = new electron_1.BrowserWindow({
+    const mainWindow = new BrowserWindow({
+        frame: false,
+        titlebarStyle: 'hidden',
+        width: 1440,
+        height: 1024,
         webPreferences: {
             // tsc or webpack が出力したプリロードスクリプトを読み込み
             preload: node_path_1.default.join(__dirname, 'scripts/mainWindowPreload.js'),
@@ -28,4 +32,4 @@ electron_1.app.whenReady().then(() => {
     mainWindow.webContents.openDevTools();
 });
 // すべてのウィンドウが閉じられたらアプリを終了する
-electron_1.app.once('window-all-closed', () => electron_1.app.quit());
+app.once('window-all-closed', () => app.quit());

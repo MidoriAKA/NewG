@@ -1,1 +1,1 @@
-{"version":3,"file":"app.css","mappings":";;;AAAA;IACI,uBAAuB;IACvB,kBAAkB;EACpB,C","sources":["webpack://newg/./src/web/App.css"],"sourcesContent":[".container {\r\n    font-family: sans-serif;\r\n    text-align: center;\r\n  }"],"names":[],"sourceRoot":""}
+{"version":3,"file":"app.css","mappings":";;;AAAA;EACE,SAAS;AACX;AACA;IACI,uBAAuB;IACvB,kBAAkB;EACpB,C","sources":["webpack://newg/./src/web/App.css"],"sourcesContent":["body {\r\n  margin: 0;\r\n}\r\n.container {\r\n    font-family: sans-serif;\r\n    text-align: center;\r\n  }"],"names":[],"sourceRoot":""}

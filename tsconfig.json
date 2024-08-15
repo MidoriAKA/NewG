@@ -5,7 +5,14 @@
         "esModuleInterop": true,
         "moduleResolution": "node",
         "strict": true,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "jsxImportSource": "@emotion/react",
+        "baseUrl": "./",
+        "paths": {
+            "@src/*": ["src/*"],
+            "@components/*": ["src/web/components/*"],
+            "@styles/*": ["src/web/styles/*"]
+        }
     },
     "include": ["src/**/*"],
     "ts-node": {

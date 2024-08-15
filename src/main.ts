@@ -18,10 +18,14 @@ if (process.env.NODE_ENV === "development") {
 app.whenReady().then(() => {
   // アプリの起動イベント発火で BrowserWindow インスタンスを作成
     const mainWindow = new BrowserWindow({
-    webPreferences: {
-      // tsc or webpack が出力したプリロードスクリプトを読み込み
-        preload: path.join(__dirname, 'scripts/mainWindowPreload.js'),
-    },
+      frame: false,
+      titlebarStyle: 'hidden',
+      width: 1440,
+      height: 1024,
+      webPreferences: {
+        // tsc or webpack が出力したプリロードスクリプトを読み込み
+          preload: path.join(__dirname, 'scripts/mainWindowPreload.js'),
+      },
     });
 
   // レンダラープロセスをロード
