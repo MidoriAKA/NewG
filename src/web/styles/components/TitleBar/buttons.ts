@@ -5,6 +5,7 @@ export const ButtonsWrapperStyle = {
   margin: "0 6px",
 };
 export const ButtonsStyle = {
+  WebkitAppRegion: "no-drag",
   border: "none",
   backgroundColor: "transparent",
   color: "#1e1e1e",

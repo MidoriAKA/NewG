@@ -5,6 +5,7 @@ import { ButtonsStyle, ButtonsWrapperStyle } from "./buttons";
 export const Container: SerializedStyles = css ({
   ...HorizontalCenter,
   ...BGBlack,
+  WebkitAppRegion: "drag",
   flexDirection: "row-reverse",
   alignContent: "center",
   height: "40px",

@@ -1,7 +1,9 @@
 import React from "react";
 import * as style from "@styles/components/TitleBar/TitleBar";
+import { TitleBarViewModel } from "./TitleBarViewModel";
 
-export const TitleBarViewModel = () => {
+export const TitleBarView = () => {
+  const { buttonsEvents } = TitleBarViewModel();
   return (
     <div
       className="title-bar"
@@ -17,7 +19,7 @@ export const TitleBarViewModel = () => {
         >
           <button
             onClick={() => {
-              window.close();
+              buttonsEvents("close");
             }}
             css={style.CloseButton}
           >
@@ -30,7 +32,7 @@ export const TitleBarViewModel = () => {
         >
           <button
             onClick={() => {
-              console.log("maximize");
+              buttonsEvents("maximize");
             }}
             css={style.MaximizeButton}
           >
@@ -43,7 +45,7 @@ export const TitleBarViewModel = () => {
         >
           <button
             onClick={() => {
-              console.log("minimize");
+              buttonsEvents("minimize");
             }}
             css={style.MinimizeButton}
           >

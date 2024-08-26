@@ -19,7 +19,7 @@ app.whenReady().then(() => {
     // アプリの起動イベント発火で BrowserWindow インスタンスを作成
     const mainWindow = new BrowserWindow({
         frame: false,
-        titlebarStyle: 'hidden',
+        titleBarStyle: 'hidden',
         width: 1440,
         height: 1024,
         webPreferences: {
@@ -30,6 +30,21 @@ app.whenReady().then(() => {
     // レンダラープロセスをロード
     mainWindow.loadFile('dist/index.html');
     mainWindow.webContents.openDevTools();
+    ipcMain.on('titlebarEvent', (event, arg) => {
+        switch (arg) {
+            case 'close':
+                mainWindow.close();
+                break;
+            case 'minimize':
+                mainWindow.minimize();
+                break;
+            case 'maximize':
+                mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize();
+                break;
+            default:
+                break;
+        }
+    });
 });
 // すべてのウィンドウが閉じられたらアプリを終了する
 app.once('window-all-closed', () => app.quit());
