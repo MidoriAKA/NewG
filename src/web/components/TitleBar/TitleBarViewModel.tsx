@@ -6,9 +6,6 @@ export const TitleBarViewModel = () => {
     <div
       className="title-bar"
       css={style.Container}
-      style={{
-        color: "#1e1e1e",
-      }}
     >
       <div
         className="title-bar__buttons-wrapper"
@@ -16,7 +13,7 @@ export const TitleBarViewModel = () => {
       >
         <div
           className="title-bar__close"
-          css={style.CloseButtonWrapper}
+          css={style.Button}
         >
           <button
             onClick={() => {
@@ -28,8 +25,21 @@ export const TitleBarViewModel = () => {
           </button>
         </div>
         <div
+          className="title-bar__maximize"
+          css={style.Button}
+        >
+          <button
+            onClick={() => {
+              console.log("maximize");
+            }}
+            css={style.MaximizeButton}
+          >
+            □
+          </button>
+        </div>
+        <div
           className="title-bar__minimize"
-          css={style.MinimizeButtonWrapper}
+          css={style.Button}
         >
           <button
             onClick={() => {

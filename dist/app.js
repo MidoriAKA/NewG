@@ -37698,11 +37698,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TitleBarViewModel = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Container, style: {
-            color: "#1e1e1e",
-        }, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "title-bar__buttons-wrapper", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__close", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButtonWrapper, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "title-bar__buttons-wrapper", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__close", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
                             window.close();
-                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButton, children: "\u2715" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__minimize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButtonWrapper, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButton, children: "\u2715" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__maximize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                            console.log("maximize");
+                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MaximizeButton, children: "\u25A1" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__minimize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
                             console.log("minimize");
                         }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButton, children: "-" }) })] }) }));
 };
@@ -37718,66 +37718,131 @@ const TitleBarViewModel = () => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Button: () => (/* binding */ Button),
 /* harmony export */   ButtonsWrapper: () => (/* binding */ ButtonsWrapper),
 /* harmony export */   CloseButton: () => (/* binding */ CloseButton),
-/* harmony export */   CloseButtonWrapper: () => (/* binding */ CloseButtonWrapper),
 /* harmony export */   Container: () => (/* binding */ Container),
-/* harmony export */   MinimizeButton: () => (/* binding */ MinimizeButton),
-/* harmony export */   MinimizeButtonWrapper: () => (/* binding */ MinimizeButtonWrapper)
+/* harmony export */   MaximizeButton: () => (/* binding */ MaximizeButton),
+/* harmony export */   MinimizeButton: () => (/* binding */ MinimizeButton)
 /* harmony export */ });
-/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
+/* harmony import */ var _root__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../root */ "./src/web/styles/root.ts");
+/* harmony import */ var _buttons__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./buttons */ "./src/web/styles/components/TitleBar/buttons.ts");
 
-const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
-    display: "flex",
+
+
+const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
+    ..._root__WEBPACK_IMPORTED_MODULE_0__.HorizontalCenter,
+    ..._root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
     flexDirection: "row-reverse",
     alignContent: "center",
-    alignItems: "center",
     height: "40px",
     width: "100%",
-    backgroundColor: "#1e1e1e",
 });
-const ButtonsWrapper = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
-    display: "flex",
+const ButtonsWrapper = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
+    ..._root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
     flexDirection: "row-reverse",
-    justifyContent: "center",
-    alignItems: "center",
     height: "40px",
     padding: "0 12px",
 });
-const CloseButtonWrapper = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
-    width: "16px",
-    height: "16px",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    borderRadius: "50%",
-    backgroundColor: "red",
-    borderColor: "rgba(30,30,30,0.5)",
-    margin: "0 6px",
+const Button = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
+    ..._buttons__WEBPACK_IMPORTED_MODULE_1__.ButtonsWrapperStyle,
+    ..._root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
+    ..._root__WEBPACK_IMPORTED_MODULE_0__.BGWhite,
+    '&.title-bar__close:hover': {
+        backgroundColor: _root__WEBPACK_IMPORTED_MODULE_0__.Colors.red
+    },
+    '&.title-bar__maximize:hover': {
+        backgroundColor: _root__WEBPACK_IMPORTED_MODULE_0__.Colors.green
+    },
+    '&.title-bar__minimize:hover': {
+        backgroundColor: _root__WEBPACK_IMPORTED_MODULE_0__.Colors.yellow
+    }
 });
-const CloseButton = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
-    border: "none",
-    backgroundColor: "transparent",
-    color: "black",
+const CloseButton = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
+    ..._buttons__WEBPACK_IMPORTED_MODULE_1__.ButtonsStyle,
     fontSize: "12px",
     fontWeight: "bold",
 });
-const MinimizeButtonWrapper = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
+const MaximizeButton = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
+    ..._buttons__WEBPACK_IMPORTED_MODULE_1__.ButtonsStyle,
+    fontSize: "20px",
+    fontWeight: "bold",
+    paddingBottom: "5px",
+});
+const MinimizeButton = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
+    ..._buttons__WEBPACK_IMPORTED_MODULE_1__.ButtonsStyle,
+    fontSize: "20px",
+    paddingBottom: "3px",
+});
+
+
+/***/ }),
+
+/***/ "./src/web/styles/components/TitleBar/buttons.ts":
+/*!*******************************************************!*\
+  !*** ./src/web/styles/components/TitleBar/buttons.ts ***!
+  \*******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ButtonsStyle: () => (/* binding */ ButtonsStyle),
+/* harmony export */   ButtonsWrapperStyle: () => (/* binding */ ButtonsWrapperStyle)
+/* harmony export */ });
+const ButtonsWrapperStyle = {
     width: "16px",
     height: "16px",
+    borderRadius: "50%",
+    margin: "0 6px",
+};
+const ButtonsStyle = {
+    border: "none",
+    backgroundColor: "transparent",
+    color: "#1e1e1e",
+};
+
+
+/***/ }),
+
+/***/ "./src/web/styles/root.ts":
+/*!********************************!*\
+  !*** ./src/web/styles/root.ts ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BGBlack: () => (/* binding */ BGBlack),
+/* harmony export */   BGWhite: () => (/* binding */ BGWhite),
+/* harmony export */   Colors: () => (/* binding */ Colors),
+/* harmony export */   HorizontalCenter: () => (/* binding */ HorizontalCenter),
+/* harmony export */   VerticalCenter: () => (/* binding */ VerticalCenter)
+/* harmony export */ });
+const Colors = {
+    black: "#1e1e1e",
+    white: "#d9d9d9",
+    green: "#3bc73b",
+    red: "#f66b59",
+    yellow: "#f8bf28"
+};
+const BGBlack = {
+    backgroundColor: "#1e1e1e",
+    color: "#d9d9d9"
+};
+const BGWhite = {
+    backgroundColor: "#d9d9d9",
+    color: "#1e1e1e"
+};
+const HorizontalCenter = {
+    display: "flex",
+    alignItems: "center",
+};
+const VerticalCenter = {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: "50%",
-    backgroundColor: "yellow",
-    margin: "0 6px",
-});
-const MinimizeButton = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
-    border: "none",
-    backgroundColor: "transparent",
-    color: "black",
-    fontSize: "20px",
-});
+};
 
 
 /***/ }),
