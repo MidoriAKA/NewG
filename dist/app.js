@@ -37672,21 +37672,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.css */ "./src/web/App.css");
-/* harmony import */ var _components_TitleBar_TitleBarViewModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/TitleBar/TitleBarViewModel */ "./src/web/components/TitleBar/TitleBarViewModel.tsx");
+/* harmony import */ var _components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/TitleBar/TitleBarView */ "./src/web/components/TitleBar/TitleBarView.tsx");
 
 
 
 const App = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_TitleBar_TitleBarViewModel__WEBPACK_IMPORTED_MODULE_1__.TitleBarViewModel, {}) }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__.TitleBarViewModel, {}) }));
 };
 
 
 /***/ }),
 
-/***/ "./src/web/components/TitleBar/TitleBarViewModel.tsx":
-/*!***********************************************************!*\
-  !*** ./src/web/components/TitleBar/TitleBarViewModel.tsx ***!
-  \***********************************************************/
+/***/ "./src/web/components/TitleBar/TitleBarView.tsx":
+/*!******************************************************!*\
+  !*** ./src/web/components/TitleBar/TitleBarView.tsx ***!
+  \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
