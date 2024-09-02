@@ -4,10 +4,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const node_path_1 = __importDefault(require("node:path"));
-const { app, BrowserWindow, BrowserView, ipcMain, shell, clipboard, Notification, screen } = require('electron');
+const electron_1 = require("electron");
+const electron_reload_1 = __importDefault(require("electron-reload"));
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
-    require("electron-reload")(__dirname, {
+    (0, electron_reload_1.default)(__dirname, {
         electron: node_path_1.default.resolve(__dirname, process.platform === "win32"
             ? "../node_modules/electron/dist/electron.exe"
             : "../node_modules/.bin/electron"),
@@ -15,9 +16,9 @@ if (process.env.NODE_ENV === "development") {
         hardResetMethod: "exit",
     });
 }
-app.whenReady().then(() => {
+electron_1.app.whenReady().then(() => {
     // アプリの起動イベント発火で BrowserWindow インスタンスを作成
-    const mainWindow = new BrowserWindow({
+    const mainWindow = new electron_1.BrowserWindow({
         frame: false,
         titleBarStyle: 'hidden',
         width: 1440,
@@ -30,16 +31,16 @@ app.whenReady().then(() => {
     // レンダラープロセスをロード
     mainWindow.loadFile('dist/index.html');
     mainWindow.webContents.openDevTools();
-    ipcMain.on('titlebarEvent', (event, arg) => {
+    electron_1.ipcMain.on('titlebarEvent', (event, arg) => {
         switch (arg) {
-            case 'close':
+            case "close":
                 mainWindow.close();
                 break;
-            case 'minimize':
+            case "minimize":
                 mainWindow.minimize();
                 break;
-            case 'maximize':
-                mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize();
+            case "maximize":
+                mainWindow.maximize();
                 break;
             default:
                 break;
@@ -47,4 +48,4 @@ app.whenReady().then(() => {
     });
 });
 // すべてのウィンドウが閉じられたらアプリを終了する
-app.once('window-all-closed', () => app.quit());
+electron_1.app.once('window-all-closed', () => electron_1.app.quit());

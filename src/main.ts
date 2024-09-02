@@ -1,9 +1,10 @@
 import path from 'node:path';
-const { app, BrowserWindow, BrowserView, ipcMain, shell, clipboard, Notification, screen  } = require('electron')
+import { app, BrowserWindow, ipcMain } from "electron";
+import electronReload from "electron-reload";
 
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
-    require("electron-reload")(__dirname, {
+    electronReload(__dirname, {
     electron: path.resolve(
         __dirname,
         process.platform === "win32"
@@ -34,14 +35,14 @@ app.whenReady().then(() => {
 
     ipcMain.on('titlebarEvent', (event, arg) => {
       switch (arg) {
-        case 'close':
+        case "close":
           mainWindow.close();
           break;
-        case 'minimize':
+        case "minimize":
           mainWindow.minimize();
           break;
-        case 'maximize':
-          mainWindow.isMaximized() ? mainWindow.unmaximize() : mainWindow.maximize();
+        case "maximize":
+          mainWindow.maximize();
           break;
         default:
           break;

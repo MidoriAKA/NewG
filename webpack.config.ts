@@ -23,6 +23,9 @@ const common: Configuration = {
       '@styles': `${__dirname}/src/web/styles`,
       // プロジェクトルートの 'src/web/components' ディレクトリをエイリアス '@components' として登録
       '@components': `${__dirname}/src/web/components`,
+    },
+    fallback: {
+      fs: false
     }
   },
   /**

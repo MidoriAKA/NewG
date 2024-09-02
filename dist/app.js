@@ -1,4 +1,5 @@
 /******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
 /***/ "./node_modules/@emotion/cache/dist/emotion-cache.browser.development.esm.js":
@@ -7,7 +8,6 @@
   \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ createCache)
@@ -643,7 +643,6 @@ createCache(options
   \*************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ murmur2)
@@ -713,7 +712,6 @@ function murmur2(str) {
   \*******************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ memoize)
@@ -737,7 +735,6 @@ function memoize(fn) {
   \*****************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ hoistNonReactStatics)
@@ -765,7 +762,6 @@ var hoistNonReactStatics = (function (targetComponent, sourceComponent) {
   \**********************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   C: () => (/* binding */ CacheProvider),
@@ -1091,7 +1087,6 @@ var Emotion$1 = Emotion;
   \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CacheProvider: () => (/* reexport safe */ _emotion_element_7a1343fa_browser_development_esm_js__WEBPACK_IMPORTED_MODULE_0__.C),
@@ -1135,7 +1130,7 @@ var isDevelopment = true;
 
 var pkg = {
 	name: "@emotion/react",
-	version: "11.13.0",
+	version: "11.13.3",
 	main: "dist/emotion-react.cjs.js",
 	module: "dist/emotion-react.esm.js",
 	exports: {
@@ -1398,7 +1393,7 @@ var pkg = {
 		"@babel/runtime": "^7.18.3",
 		"@emotion/babel-plugin": "^11.12.0",
 		"@emotion/cache": "^11.13.0",
-		"@emotion/serialize": "^1.3.0",
+		"@emotion/serialize": "^1.3.1",
 		"@emotion/use-insertion-effect-with-fallbacks": "^1.1.0",
 		"@emotion/utils": "^1.4.0",
 		"@emotion/weak-memoize": "^0.4.0",
@@ -1797,7 +1792,6 @@ var ClassNames
   \***********************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Fragment: () => (/* binding */ Fragment),
@@ -1855,7 +1849,6 @@ function jsxs(type, props, key) {
   \***********************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   serializeStyles: () => (/* binding */ serializeStyles)
@@ -2198,7 +2191,6 @@ function serializeStyles(args, registered, mergedProps) {
   \***************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   StyleSheet: () => (/* binding */ StyleSheet)
@@ -2373,7 +2365,6 @@ var StyleSheet = /*#__PURE__*/function () {
   \*********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ unitlessKeys)
@@ -2412,6 +2403,7 @@ var unitlessKeys = {
   opacity: 1,
   order: 1,
   orphans: 1,
+  scale: 1,
   tabSize: 1,
   widows: 1,
   zIndex: 1,
@@ -2439,7 +2431,6 @@ var unitlessKeys = {
   \***********************************************************************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   useInsertionEffectAlwaysWithSyncFallback: () => (/* binding */ useInsertionEffectAlwaysWithSyncFallback),
@@ -2468,7 +2459,6 @@ var useInsertionEffectWithLayoutFallback = useInsertionEffect || react__WEBPACK_
   \***********************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   getRegisteredStyles: () => (/* binding */ getRegisteredStyles),
@@ -2530,7 +2520,6 @@ var insertStyles = function insertStyles(cache, serialized, isStringTag) {
   \*****************************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ weakMemoize)
@@ -2555,45 +2544,12 @@ var weakMemoize = function weakMemoize(func) {
 
 /***/ }),
 
-/***/ "./node_modules/electron/index.js":
-/*!****************************************!*\
-  !*** ./node_modules/electron/index.js ***!
-  \****************************************/
-/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
-
-var __dirname = "/";
-const fs = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'fs'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-const path = __webpack_require__(Object(function webpackMissingModule() { var e = new Error("Cannot find module 'path'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
-const pathFile = path.join(__dirname, 'path.txt');
-
-function getElectronPath () {
-  let executablePath;
-  if (fs.existsSync(pathFile)) {
-    executablePath = fs.readFileSync(pathFile, 'utf-8');
-  }
-  if (process.env.ELECTRON_OVERRIDE_DIST_PATH) {
-    return path.join(process.env.ELECTRON_OVERRIDE_DIST_PATH, executablePath || 'electron');
-  }
-  if (executablePath) {
-    return path.join(__dirname, 'dist', executablePath);
-  } else {
-    throw new Error('Electron failed to install correctly, please delete node_modules/electron and try installing again');
-  }
-}
-
-module.exports = getElectronPath();
-
-
-/***/ }),
-
 /***/ "./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js":
 /*!**********************************************************************************!*\
   !*** ./node_modules/hoist-non-react-statics/dist/hoist-non-react-statics.cjs.js ***!
   \**********************************************************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 var reactIs = __webpack_require__(/*! react-is */ "./node_modules/react-is/index.js");
@@ -2707,7 +2663,6 @@ module.exports = hoistNonReactStatics;
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
@@ -2720,7 +2675,6 @@ __webpack_require__.r(__webpack_exports__);
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-"use strict";
 /**
  * @license React
  * react-dom.development.js
@@ -32649,7 +32603,6 @@ if (
   \******************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-"use strict";
 
 
 var m = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -32682,7 +32635,6 @@ if (false) {} else {
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 function checkDCE() {
@@ -32726,7 +32678,6 @@ if (false) {} else {
   \***********************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
-"use strict";
 /** @license React v16.13.1
  * react-is.development.js
  *
@@ -32918,7 +32869,6 @@ exports.typeOf = typeOf;
   \****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 if (false) {} else {
@@ -32934,7 +32884,6 @@ if (false) {} else {
   \*****************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-"use strict";
 /**
  * @license React
  * react-jsx-runtime.development.js
@@ -34278,7 +34227,6 @@ exports.jsxs = jsxs;
   \*****************************************************/
 /***/ ((module, exports, __webpack_require__) => {
 
-"use strict";
 /* module decorator */ module = __webpack_require__.nmd(module);
 /**
  * @license React
@@ -37030,7 +36978,6 @@ if (
   \*************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 if (false) {} else {
@@ -37046,7 +36993,6 @@ if (false) {} else {
   \*******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 if (false) {} else {
@@ -37062,7 +37008,6 @@ if (false) {} else {
   \*************************************************************/
 /***/ ((__unused_webpack_module, exports) => {
 
-"use strict";
 /**
  * @license React
  * scheduler.development.js
@@ -37707,7 +37652,6 @@ if (
   \*****************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-"use strict";
 
 
 if (false) {} else {
@@ -37723,7 +37667,6 @@ if (false) {} else {
   \*************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   App: () => (/* binding */ App)
@@ -37747,52 +37690,22 @@ const App = () => {
   \******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   TitleBarView: () => (/* binding */ TitleBarView)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/TitleBar/TitleBar */ "./src/web/styles/components/TitleBar/TitleBar.ts");
-/* harmony import */ var _TitleBarViewModel__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TitleBarViewModel */ "./src/web/components/TitleBar/TitleBarViewModel.tsx");
-
 
 
 const TitleBarView = () => {
-    const { buttonsEvents } = (0,_TitleBarViewModel__WEBPACK_IMPORTED_MODULE_1__.TitleBarViewModel)();
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "title-bar", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", { className: "title-bar__buttons-wrapper", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "title-bar__close", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", { onClick: () => {
-                            buttonsEvents("close");
-                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButton, children: "\u2715" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "title-bar__maximize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", { onClick: () => {
-                            buttonsEvents("maximize");
-                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MaximizeButton, children: "\u25A1" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "title-bar__minimize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("button", { onClick: () => {
-                            buttonsEvents("minimize");
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "title-bar__buttons-wrapper", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__close", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                            window.titlebarEvents.close();
+                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButton, children: "\u2715" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__maximize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                            window.titlebarEvents.maximize();
+                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MaximizeButton, children: "\u25A1" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__minimize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                            window.titlebarEvents.minimize();
                         }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButton, children: "-" }) })] }) }));
-};
-
-
-/***/ }),
-
-/***/ "./src/web/components/TitleBar/TitleBarViewModel.tsx":
-/*!***********************************************************!*\
-  !*** ./src/web/components/TitleBar/TitleBarViewModel.tsx ***!
-  \***********************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   TitleBarViewModel: () => (/* binding */ TitleBarViewModel)
-/* harmony export */ });
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! electron */ "./node_modules/electron/index.js");
-/* harmony import */ var electron__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(electron__WEBPACK_IMPORTED_MODULE_0__);
-
-const TitleBarViewModel = () => {
-    const buttonsEvents = (arg) => {
-        electron__WEBPACK_IMPORTED_MODULE_0__.ipcRenderer.send("titlebarEvent", arg);
-    };
-    return {
-        buttonsEvents
-    };
 };
 
 
@@ -37804,7 +37717,6 @@ const TitleBarViewModel = () => {
   \********************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   Button: () => (/* binding */ Button),
@@ -37875,7 +37787,6 @@ const MinimizeButton = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
   \*******************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ButtonsStyle: () => (/* binding */ ButtonsStyle),
@@ -37903,7 +37814,6 @@ const ButtonsStyle = {
   \********************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BGBlack: () => (/* binding */ BGBlack),
@@ -37946,7 +37856,6 @@ const VerticalCenter = {
   \************************************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (/* binding */ _extends)
@@ -37970,7 +37879,6 @@ function _extends() {
   \*****************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   CHARSET: () => (/* binding */ CHARSET),
@@ -38024,7 +37932,6 @@ var LAYER = '@layer'
   \***********************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   middleware: () => (/* binding */ middleware),
@@ -38155,7 +38062,6 @@ function namespace (element) {
   \*******************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   comment: () => (/* binding */ comment),
@@ -38368,7 +38274,6 @@ function declaration (value, root, parent, length) {
   \*********************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   prefix: () => (/* binding */ prefix)
@@ -38530,7 +38435,6 @@ function prefix (value, length, children) {
   \***********************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   serialize: () => (/* binding */ serialize),
@@ -38584,7 +38488,6 @@ function stringify (element, index, children, callback) {
   \**********************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   alloc: () => (/* binding */ alloc),
@@ -38870,7 +38773,6 @@ function identifier (index) {
   \********************************************/
 /***/ ((__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   abs: () => (/* binding */ abs),
@@ -39100,9 +39002,6 @@ function combine (array, callback) {
 /******/ 	
 /************************************************************************/
 var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be in strict mode.
-(() => {
-"use strict";
 /*!***************************!*\
   !*** ./src/web/index.tsx ***!
   \***************************/
@@ -39117,8 +39016,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 (0,react_dom_client__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById('root')).render((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react__WEBPACK_IMPORTED_MODULE_0__.StrictMode, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_App__WEBPACK_IMPORTED_MODULE_2__.App, {}) }));
-
-})();
 
 /******/ })()
 ;
