@@ -1,9 +1,10 @@
 import path from 'node:path';
-const { app, BrowserWindow, BrowserView, ipcMain, shell, clipboard, Notification, screen  } = require('electron')
+import { app, BrowserWindow, ipcMain } from "electron";
+import electronReload from "electron-reload";
 
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
-    require("electron-reload")(__dirname, {
+    electronReload(__dirname, {
     electron: path.resolve(
         __dirname,
         process.platform === "win32"
@@ -18,15 +19,35 @@ if (process.env.NODE_ENV === "development") {
 app.whenReady().then(() => {
   // アプリの起動イベント発火で BrowserWindow インスタンスを作成
     const mainWindow = new BrowserWindow({
-    webPreferences: {
-      // tsc or webpack が出力したプリロードスクリプトを読み込み
-        preload: path.join(__dirname, 'scripts/mainWindowPreload.js'),
-    },
+      frame: false,
+      titleBarStyle: 'hidden',
+      width: 1440,
+      height: 1024,
+      webPreferences: {
+        // tsc or webpack が出力したプリロードスクリプトを読み込み
+          preload: path.join(__dirname, 'scripts/mainWindowPreload.js'),
+      },
     });
 
   // レンダラープロセスをロード
     mainWindow.loadFile('dist/index.html');
     mainWindow.webContents.openDevTools();
+
+    ipcMain.on('titlebarEvent', (event, arg) => {
+      switch (arg) {
+        case "close":
+          mainWindow.close();
+          break;
+        case "minimize":
+          mainWindow.minimize();
+          break;
+        case "maximize":
+          mainWindow.maximize();
+          break;
+        default:
+          break;
+      }
+    });
 });
 
 // すべてのウィンドウが閉じられたらアプリを終了する

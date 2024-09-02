@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import { TitleBarView } from './components/TitleBar/TitleBarView';
 
 export const App = () => {
     return (
-        <div className="container">
-            <h1>Hello.</h1>
-        </div>
+        <>
+            <TitleBarView />
+        </>
     );
 };
