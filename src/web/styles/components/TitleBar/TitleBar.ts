@@ -8,6 +8,7 @@ export const Container: SerializedStyles = css ({
   WebkitAppRegion: "drag",
   flexDirection: "row-reverse",
   alignContent: "center",
+  justifyContent: "space-between",
   height: "40px",
   width: "100%",
 });

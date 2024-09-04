@@ -1130,7 +1130,7 @@ var isDevelopment = true;
 
 var pkg = {
 	name: "@emotion/react",
-	version: "11.13.3",
+	version: "11.13.0",
 	main: "dist/emotion-react.cjs.js",
 	module: "dist/emotion-react.esm.js",
 	exports: {
@@ -1393,7 +1393,7 @@ var pkg = {
 		"@babel/runtime": "^7.18.3",
 		"@emotion/babel-plugin": "^11.12.0",
 		"@emotion/cache": "^11.13.0",
-		"@emotion/serialize": "^1.3.1",
+		"@emotion/serialize": "^1.3.0",
 		"@emotion/use-insertion-effect-with-fallbacks": "^1.1.0",
 		"@emotion/utils": "^1.4.0",
 		"@emotion/weak-memoize": "^0.4.0",
@@ -2403,7 +2403,6 @@ var unitlessKeys = {
   opacity: 1,
   order: 1,
   orphans: 1,
-  scale: 1,
   tabSize: 1,
   widows: 1,
   zIndex: 1,
@@ -37699,13 +37698,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const TitleBarView = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "title-bar__buttons-wrapper", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__close", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
-                            window.titlebarEvents.close();
-                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButton, children: "\u2715" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__maximize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
-                            window.titlebarEvents.maximize();
-                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MaximizeButton, children: "\u25A1" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__minimize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
-                            window.titlebarEvents.minimize();
-                        }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButton, children: "-" }) })] }) }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "title-bar", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "title-bar__buttons-wrapper", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__close", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                                    window.titlebarEvents.close();
+                                }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.CloseButton, children: "\u2715" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__maximize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                                    window.titlebarEvents.maximize();
+                                }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MaximizeButton, children: "\u25A1" }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__minimize", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.Button, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("button", { onClick: () => {
+                                    window.titlebarEvents.minimize();
+                                }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButton, children: "-" }) })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__title", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", { children: "Moden GLPI" }) })] }) }));
 };
 
 
@@ -37738,6 +37737,7 @@ const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_2__.css)({
     WebkitAppRegion: "drag",
     flexDirection: "row-reverse",
     alignContent: "center",
+    justifyContent: "space-between",
     height: "40px",
     width: "100%",
 });
