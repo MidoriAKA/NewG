@@ -1,55 +1,11 @@
 import * as style from "@styles/components/SideMenu/SideMenu"
 import { useState } from "react";
 
+import sidemenuItems from "./sideMenuItems.json" assert { type: "json" };
+
 export const SidemenuView = () => {
 
-  type Active =
-    | "dashboard"
-    | "assets"
-    | "users"
-    | "locations"
-    | "networks"
-    | "plugins"
-    | "settings";
-  const [isActive, setActive] = useState<Active>("dashboard");
-
-  const sidemenuItems = [
-    {
-      icon: "📊",
-      text: "Dashboard",
-      active: "dashboard",
-    },
-    {
-      icon: "📦",
-      text: "Assets",
-      active: "assets",
-    },
-    {
-      icon: "👥",
-      text: "Users",
-      active: "users",
-    },
-    {
-      icon: "📍",
-      text: "Locations",
-      active: "locations",
-    },
-    {
-      icon: "🌐",
-      text: "Networks",
-      active: "networks",
-    },
-    {
-      icon: "🔌",
-      text: "Plugins",
-      active: "plugins",
-    },
-    {
-      icon: "⚙️",
-      text: "Settings",
-      active: "settings",
-    },
-  ];
+  const [isActive, setActive] = useState<Active>("allTickets");
 
   return (
     <>
@@ -57,6 +13,16 @@ export const SidemenuView = () => {
         className="side-menu"
         css={style.Container}
       >
+        <div
+          className="side-menu__section"
+          css={style.Section}
+        >
+          <span
+            className="side-menu__section__text"
+            css={style.SectionText}
+          >
+            Chamados</span>
+        </div>
         {sidemenuItems.map((item, index) => (
           <button
             key={index}

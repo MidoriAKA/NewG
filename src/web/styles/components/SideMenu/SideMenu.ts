@@ -10,6 +10,16 @@ export const Container: SerializedStyles = css({
   width: "200px",
 });
 
+export const Section: SerializedStyles = css({
+  ...VerticalCenter,
+  justifyContent: "unset",
+  alignContent: "center",
+  border: "none",
+  height: "auto",
+  width: "90%",
+  minHeight: "40px"
+});
+
 const ItemWrapperBase = {
   ...VerticalCenter,
   justifyContent: "unset",
@@ -28,6 +38,7 @@ export const ItemWrapperActive: SerializedStyles = css({
   ...BGWhite,
   borderRadius: "10px"
 });
+
 export const ItemIcon: SerializedStyles = css({
   ...VerticalCenter,
   height: "100%",

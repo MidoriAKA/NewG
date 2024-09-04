@@ -1,0 +1,17 @@
+[
+  {
+    "icon": "📥",
+    "text": "Todos",
+    "active": "allTickets"
+  },
+  {
+    "icon": "📝",
+    "text": "Não Atribuídos",
+    "active": "notAssigned"
+  },
+  {
+    "icon": "📂",
+    "text": "Fechados",
+    "active": "closed"
+  }
+]
