@@ -23,6 +23,7 @@ app.whenReady().then(() => {
       titleBarStyle: 'hidden',
       width: 1440,
       height: 1024,
+      backgroundColor: "#1e1e1e",
       webPreferences: {
         // tsc or webpack が出力したプリロードスクリプトを読み込み
           preload: path.join(__dirname, 'scripts/mainWindowPreload.js'),
