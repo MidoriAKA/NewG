@@ -29,12 +29,17 @@ const ItemWrapperBase = {
   border: "none",
   height: "auto",
   width: "85%",
-  minHeight: "40px"
+  minHeight: "40px",
+  margin: "5px 0",
 };
 export const ItemWrapper: SerializedStyles = css({
   ...ItemWrapperBase,
   ...theme.BGBlack,
   color: `rgba(${theme.ColorsRGB.white}, 0.8)`,
+  "&:hover": {
+    backgroundColor: `rgba(${theme.ColorsRGB.white}, 0.1)`,
+    borderRadius: "10px"
+  },
 });
 export const ItemWrapperActive: SerializedStyles = css({
   ...ItemWrapperBase,
