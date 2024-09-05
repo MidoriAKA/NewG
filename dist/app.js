@@ -37671,16 +37671,43 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   App: () => (/* binding */ App)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.css */ "./src/web/App.css");
 /* harmony import */ var _components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/TitleBar/TitleBarView */ "./src/web/components/TitleBar/TitleBarView.tsx");
 /* harmony import */ var _components_SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/SideMenu/SideMenuView */ "./src/web/components/SideMenu/SideMenuView.tsx");
+/* harmony import */ var _components_MainArea_MainAreaView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/MainArea/MainAreaView */ "./src/web/components/MainArea/MainAreaView.tsx");
+
 
 
 
 
 const App = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__.TitleBarView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_components_SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_2__.SidemenuView, {})] }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__.TitleBarView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", { style: {
+                    display: 'flex',
+                    flexDirection: 'row',
+                    height: '100vh-41px',
+                }, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_2__.SidemenuView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_MainArea_MainAreaView__WEBPACK_IMPORTED_MODULE_3__.MainAreaView, {})] })] }));
+};
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/MainAreaView.tsx":
+/*!******************************************************!*\
+  !*** ./src/web/components/MainArea/MainAreaView.tsx ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MainAreaView: () => (/* binding */ MainAreaView)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/MainArea/MainArea */ "./src/web/styles/components/MainArea/MainArea.ts");
+
+
+const MainAreaView = () => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "main-area", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "main-area__content", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", { children: "Conte\u00FAdo" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", { children: "Conte\u00FAdo da \u00E1rea principal" })] }) }) }));
 };
 
 
@@ -37707,7 +37734,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const SidemenuView = () => {
     const [isActive, setActive] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("allTickets");
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Chamados" }) }), _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", { className: "side-menu__item", css: isActive === item.active ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapper, "data-is-active": isActive === item.active ? "true" : "false", onClick: () => setActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { "aria-label": item.active, children: item.icon }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemText, children: item.text })] }, index))), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Pin" }) })] }) }));
+    const handleActive = (active) => {
+        setActive(active);
+    };
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Chamados" }) }), _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", { className: "side-menu__item", css: isActive === item.active ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapper, "data-is-active": isActive === item.active ? "true" : "false", onClick: () => handleActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { "aria-label": item.active, children: item.icon }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemText, children: item.text })] }, index))), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Pin" }) })] }) }));
 };
 
 
@@ -37736,6 +37766,40 @@ const TitleBarView = () => {
                                     window.titlebarEvents.minimize();
                                 }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButton, children: "-" }) })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__title", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", { children: "Moden GLPI" }) })] }) }));
 };
+
+
+/***/ }),
+
+/***/ "./src/web/styles/components/MainArea/MainArea.ts":
+/*!********************************************************!*\
+  !*** ./src/web/styles/components/MainArea/MainArea.ts ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Container: () => (/* binding */ Container),
+/* harmony export */   Root: () => (/* binding */ Root)
+/* harmony export */ });
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
+/* harmony import */ var _styles_root__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/root */ "./src/web/styles/root.ts");
+
+
+const Root = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
+    backgroundColor: _styles_root__WEBPACK_IMPORTED_MODULE_0__.Colors.black,
+    display: "flex",
+    width: "calc(100vw - 220px)",
+    padding: "0 10px 10px 10px",
+});
+const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGGrey,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
+    flexDirection: "column",
+    width: "100%",
+    height: "100%",
+    borderRadius: "10px",
+    overflow: "hide",
+});
 
 
 /***/ }),
@@ -37808,7 +37872,7 @@ const ItemIcon = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     }
 });
 const ItemText = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
-    fontSize: "16px",
+    fontSize: "15px",
     fontWeight: "bold"
 });
 
@@ -37922,6 +37986,7 @@ const ButtonsStyle = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   BGBlack: () => (/* binding */ BGBlack),
+/* harmony export */   BGGrey: () => (/* binding */ BGGrey),
 /* harmony export */   BGWhite: () => (/* binding */ BGWhite),
 /* harmony export */   Colors: () => (/* binding */ Colors),
 /* harmony export */   ColorsRGB: () => (/* binding */ ColorsRGB),
@@ -37929,26 +37994,32 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   VerticalCenter: () => (/* binding */ VerticalCenter)
 /* harmony export */ });
 const Colors = {
-    black: "#1e1e1e",
+    black: "#1b1b1b",
+    grey: "#1f1f1f",
     white: "#d9d9d9",
     green: "#3bc73b",
     red: "#f66b59",
     yellow: "#f8bf28"
 };
 const ColorsRGB = {
-    black: "30, 30, 30",
+    black: "24, 24, 24",
+    grey: "31,31,31",
     white: "217, 217, 217",
     green: "59, 199, 59",
     red: "246, 107, 89",
     yellow: "248, 191, 40"
 };
 const BGBlack = {
-    backgroundColor: "#1e1e1e",
-    color: "#d9d9d9",
+    backgroundColor: Colors.black,
+    color: Colors.white,
+};
+const BGGrey = {
+    backgroundColor: Colors.grey,
+    color: Colors.white,
 };
 const BGWhite = {
-    backgroundColor: "#d9d9d9",
-    color: "#1e1e1e",
+    backgroundColor: Colors.white,
+    color: Colors.black,
 };
 const HorizontalCenter = {
     display: "flex",
