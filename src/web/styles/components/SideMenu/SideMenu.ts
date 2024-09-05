@@ -53,7 +53,7 @@ export const ItemIcon: SerializedStyles = css({
   }
 });
 export const ItemText: SerializedStyles = css({
-  fontSize: "16px",
+  fontSize: "15px",
   fontWeight: "bold"
 });
 
