@@ -37849,12 +37849,17 @@ const ItemWrapperBase = {
     border: "none",
     height: "auto",
     width: "85%",
-    minHeight: "40px"
+    minHeight: "40px",
+    margin: "5px 0",
 };
 const ItemWrapper = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     ...ItemWrapperBase,
     ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
     color: `rgba(${_styles_root__WEBPACK_IMPORTED_MODULE_0__.ColorsRGB.white}, 0.8)`,
+    "&:hover": {
+        backgroundColor: `rgba(${_styles_root__WEBPACK_IMPORTED_MODULE_0__.ColorsRGB.white}, 0.1)`,
+        borderRadius: "10px"
+    },
 });
 const ItemWrapperActive = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     ...ItemWrapperBase,
