@@ -1,9 +1,9 @@
 import { css, SerializedStyles } from "@emotion/react";
-import { Colors, BGBlack, HorizontalCenter, VerticalCenter, BGWhite } from "../../root";
+import * as theme from "@styles/root";
 
 export const Container: SerializedStyles = css({
-  ...HorizontalCenter,
-  ...BGBlack,
+  ...theme.HorizontalCenter,
+  ...theme.BGBlack,
   flexDirection: "column",
   alignContent: "center",
   height: "calc(100dvh - 41px)",
@@ -11,45 +11,49 @@ export const Container: SerializedStyles = css({
 });
 
 export const Section: SerializedStyles = css({
-  ...VerticalCenter,
+  ...theme.VerticalCenter,
   justifyContent: "unset",
-  alignContent: "center",
-  border: "none",
-  height: "auto",
-  width: "90%",
-  minHeight: "40px"
+  height: "40px",
+  width: "150px",
+  padding: "0 10px",
+});
+export const SectionText: SerializedStyles = css({
+  fontSize: "16px",
+
 });
 
 const ItemWrapperBase = {
-  ...VerticalCenter,
+  ...theme.VerticalCenter,
   justifyContent: "unset",
   alignContent: "center",
   border: "none",
   height: "auto",
-  width: "90%",
+  width: "85%",
   minHeight: "40px"
 };
 export const ItemWrapper: SerializedStyles = css({
   ...ItemWrapperBase,
-  ...BGBlack,
+  ...theme.BGBlack,
+  color: `rgba(${theme.ColorsRGB.white}, 0.8)`,
 });
 export const ItemWrapperActive: SerializedStyles = css({
   ...ItemWrapperBase,
-  ...BGWhite,
+  ...theme.BGWhite,
   borderRadius: "10px"
 });
 
 export const ItemIcon: SerializedStyles = css({
-  ...VerticalCenter,
+  ...theme.VerticalCenter,
   height: "100%",
-  width: "50px",
-  "span": {
-  fontSize: "20px",
+  width: "30px",
   marginRight: "10px",
+  "span": {
+    fontSize: "20px",
+    transform: "translateY(-2px)",
   }
 });
 export const ItemText: SerializedStyles = css({
   fontSize: "16px",
-  margin: "0 10px",
+  fontWeight: "bold"
 });
 
