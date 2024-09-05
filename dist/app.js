@@ -1130,7 +1130,7 @@ var isDevelopment = true;
 
 var pkg = {
 	name: "@emotion/react",
-	version: "11.13.0",
+	version: "11.13.3",
 	main: "dist/emotion-react.cjs.js",
 	module: "dist/emotion-react.esm.js",
 	exports: {
@@ -1393,7 +1393,7 @@ var pkg = {
 		"@babel/runtime": "^7.18.3",
 		"@emotion/babel-plugin": "^11.12.0",
 		"@emotion/cache": "^11.13.0",
-		"@emotion/serialize": "^1.3.0",
+		"@emotion/serialize": "^1.3.1",
 		"@emotion/use-insertion-effect-with-fallbacks": "^1.1.0",
 		"@emotion/utils": "^1.4.0",
 		"@emotion/weak-memoize": "^0.4.0",
@@ -2403,6 +2403,7 @@ var unitlessKeys = {
   opacity: 1,
   order: 1,
   orphans: 1,
+  scale: 1,
   tabSize: 1,
   widows: 1,
   zIndex: 1,
@@ -37695,53 +37696,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SidemenuView: () => (/* binding */ SidemenuView)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/SideMenu/SideMenu */ "./src/web/styles/components/SideMenu/SideMenu.ts");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sideMenuItems.json */ "./src/web/components/SideMenu/sideMenuItems.json");
+
 
 
 
 const SidemenuView = () => {
-    const [isActive, setActive] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("dashboard");
-    const sidemenuItems = [
-        {
-            icon: "📊",
-            text: "Dashboard",
-            active: "dashboard",
-        },
-        {
-            icon: "📦",
-            text: "Assets",
-            active: "assets",
-        },
-        {
-            icon: "👥",
-            text: "Users",
-            active: "users",
-        },
-        {
-            icon: "📍",
-            text: "Locations",
-            active: "locations",
-        },
-        {
-            icon: "🌐",
-            text: "Networks",
-            active: "networks",
-        },
-        {
-            icon: "🔌",
-            text: "Plugins",
-            active: "plugins",
-        },
-        {
-            icon: "⚙️",
-            text: "Settings",
-            active: "settings",
-        },
-    ];
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Container, children: sidemenuItems.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", { className: "side-menu__item", css: isActive === item.active ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapper, "data-is-active": isActive === item.active ? "true" : "false", onClick: () => setActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", { "aria-label": item.active, children: item.icon }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", { children: item.text })] }, index))) }) }));
+    const [isActive, setActive] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("allTickets");
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Chamados" }) }), _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", { className: "side-menu__item", css: isActive === item.active ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapper, "data-is-active": isActive === item.active ? "true" : "false", onClick: () => setActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { "aria-label": item.active, children: item.icon }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemText, children: item.text })] }, index))), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Pin" }) })] }) }));
 };
 
 
@@ -37786,50 +37752,64 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   ItemIcon: () => (/* binding */ ItemIcon),
 /* harmony export */   ItemText: () => (/* binding */ ItemText),
 /* harmony export */   ItemWrapper: () => (/* binding */ ItemWrapper),
-/* harmony export */   ItemWrapperActive: () => (/* binding */ ItemWrapperActive)
+/* harmony export */   ItemWrapperActive: () => (/* binding */ ItemWrapperActive),
+/* harmony export */   Section: () => (/* binding */ Section),
+/* harmony export */   SectionText: () => (/* binding */ SectionText)
 /* harmony export */ });
 /* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
-/* harmony import */ var _root__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../root */ "./src/web/styles/root.ts");
+/* harmony import */ var _styles_root__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/root */ "./src/web/styles/root.ts");
 
 
 const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
-    ..._root__WEBPACK_IMPORTED_MODULE_0__.HorizontalCenter,
-    ..._root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.HorizontalCenter,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
     flexDirection: "column",
     alignContent: "center",
     height: "calc(100dvh - 41px)",
     width: "200px",
 });
+const Section = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
+    justifyContent: "unset",
+    height: "40px",
+    width: "150px",
+    padding: "0 10px",
+});
+const SectionText = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
+    fontSize: "16px",
+});
 const ItemWrapperBase = {
-    ..._root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
     justifyContent: "unset",
     alignContent: "center",
     border: "none",
     height: "auto",
-    width: "90%",
+    width: "85%",
     minHeight: "40px"
 };
 const ItemWrapper = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     ...ItemWrapperBase,
-    ..._root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
+    color: `rgba(${_styles_root__WEBPACK_IMPORTED_MODULE_0__.ColorsRGB.white}, 0.8)`,
 });
 const ItemWrapperActive = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     ...ItemWrapperBase,
-    ..._root__WEBPACK_IMPORTED_MODULE_0__.BGWhite,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGWhite,
     borderRadius: "10px"
 });
 const ItemIcon = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
-    ..._root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
+    ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.VerticalCenter,
     height: "100%",
-    width: "50px",
+    width: "30px",
+    marginRight: "10px",
     "span": {
         fontSize: "20px",
-        marginRight: "10px",
+        transform: "translateY(-2px)",
     }
 });
 const ItemText = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     fontSize: "16px",
-    margin: "0 10px",
+    fontWeight: "bold"
 });
 
 
@@ -37944,6 +37924,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   BGBlack: () => (/* binding */ BGBlack),
 /* harmony export */   BGWhite: () => (/* binding */ BGWhite),
 /* harmony export */   Colors: () => (/* binding */ Colors),
+/* harmony export */   ColorsRGB: () => (/* binding */ ColorsRGB),
 /* harmony export */   HorizontalCenter: () => (/* binding */ HorizontalCenter),
 /* harmony export */   VerticalCenter: () => (/* binding */ VerticalCenter)
 /* harmony export */ });
@@ -37954,13 +37935,20 @@ const Colors = {
     red: "#f66b59",
     yellow: "#f8bf28"
 };
+const ColorsRGB = {
+    black: "30, 30, 30",
+    white: "217, 217, 217",
+    green: "59, 199, 59",
+    red: "246, 107, 89",
+    yellow: "248, 191, 40"
+};
 const BGBlack = {
     backgroundColor: "#1e1e1e",
-    color: "#d9d9d9"
+    color: "#d9d9d9",
 };
 const BGWhite = {
     backgroundColor: "#d9d9d9",
-    color: "#1e1e1e"
+    color: "#1e1e1e",
 };
 const HorizontalCenter = {
     display: "flex",
@@ -39031,6 +39019,16 @@ function combine (array, callback) {
 	return array.map(callback).join('')
 }
 
+
+/***/ }),
+
+/***/ "./src/web/components/SideMenu/sideMenuItems.json":
+/*!********************************************************!*\
+  !*** ./src/web/components/SideMenu/sideMenuItems.json ***!
+  \********************************************************/
+/***/ ((module) => {
+
+module.exports = /*#__PURE__*/JSON.parse('[{"icon":"📥","text":"Todos","active":"allTickets"},{"icon":"📝","text":"Não Atribuídos","active":"notAssigned"},{"icon":"📂","text":"Fechados","active":"closed"}]');
 
 /***/ })
 
