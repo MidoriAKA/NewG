@@ -6,7 +6,6 @@ export const Container: SerializedStyles = css({
   ...theme.BGBlack,
   flexDirection: "column",
   alignContent: "center",
-  height: "calc(100dvh - 41px)",
   width: "200px",
 });
 

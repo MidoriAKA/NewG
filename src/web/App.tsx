@@ -1,22 +1,22 @@
 import React from 'react';
 import './App.css';
-import { TitleBarView } from './components/TitleBar/TitleBarView';
-import { SidemenuView } from './components/SideMenu/SideMenuView';
-import { MainAreaView } from './components/MainArea/MainAreaView';
+import { css } from '@emotion/react';
+import * as style from "@styles/app";
+
+import { TitleBarView, SidemenuView, MainAreaView } from "@components/exportComponents";
+import { SideMenuContextProvider } from "./contexts/SideMenuContext";
 
 export const App = () => {
     return (
         <>
             <TitleBarView />
             <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    height: '100vh-41px',
-                }}
+                css={style.root}
             >
-                <SidemenuView />
-                <MainAreaView />
+                <SideMenuContextProvider>
+                    <SidemenuView />
+                    <MainAreaView />
+                </SideMenuContextProvider>
             </div>
         </>
     );

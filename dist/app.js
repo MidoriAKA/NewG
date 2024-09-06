@@ -37673,20 +37673,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.css */ "./src/web/App.css");
-/* harmony import */ var _components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/TitleBar/TitleBarView */ "./src/web/components/TitleBar/TitleBarView.tsx");
-/* harmony import */ var _components_SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/SideMenu/SideMenuView */ "./src/web/components/SideMenu/SideMenuView.tsx");
-/* harmony import */ var _components_MainArea_MainAreaView__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/MainArea/MainAreaView */ "./src/web/components/MainArea/MainAreaView.tsx");
+/* harmony import */ var _styles_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/app */ "./src/web/styles/app.ts");
+/* harmony import */ var _components_exportComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @components/exportComponents */ "./src/web/components/exportComponents.ts");
+/* harmony import */ var _contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
 
 
 
 
 
 const App = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_1__.TitleBarView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", { style: {
-                    display: 'flex',
-                    flexDirection: 'row',
-                    height: '100vh-41px',
-                }, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_2__.SidemenuView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_MainArea_MainAreaView__WEBPACK_IMPORTED_MODULE_3__.MainAreaView, {})] })] }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.TitleBarView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { css: _styles_app__WEBPACK_IMPORTED_MODULE_1__.root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__.SideMenuContextProvider, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.SidemenuView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.MainAreaView, {})] }) })] }));
 };
 
 
@@ -37702,13 +37698,104 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   MainAreaView: () => (/* binding */ MainAreaView)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/MainArea/MainArea */ "./src/web/styles/components/MainArea/MainArea.ts");
+/* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
+/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/index */ "./src/web/components/MainArea/routes/index.ts");
+
+
 
 
 const MainAreaView = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "main-area", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsxs)("div", { className: "main-area__content", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("h1", { children: "Conte\u00FAdo" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("p", { children: "Conte\u00FAdo da \u00E1rea principal" })] }) }) }));
+    const { state } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__.useSideMenuContext)();
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: state === "allTickets"
+            ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.AllTickets, {}) })
+            : state === "notAssigned"
+                ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.NotAssigned, {}) })
+                : state === "closed"
+                    ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket, {}) })
+                    : null // ここには来ない
+     }));
 };
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/routes/AllTickets/AllTickets.tsx":
+/*!**********************************************************************!*\
+  !*** ./src/web/components/MainArea/routes/AllTickets/AllTickets.tsx ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AllTickets: () => (/* binding */ AllTickets)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+
+const AllTickets = () => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "All Tickets" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Title" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Sample Ticket 1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Open" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Sample Ticket 2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Sample Ticket 3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "In Progress" })] })] })] })] }));
+};
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/routes/ClosedTickets/ClosedTickets.tsx":
+/*!****************************************************************************!*\
+  !*** ./src/web/components/MainArea/routes/ClosedTickets/ClosedTickets.tsx ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ClosedTicket: () => (/* binding */ ClosedTicket)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+
+const ClosedTicket = () => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "Closed Tickets" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Summary" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Assignee" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Fix bug in login page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "John Doe" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Add new feature" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Jane Smith" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Update user profile page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Mike Johnson" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] })] })] })] }));
+};
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/routes/NotAssigned/NotAssigned.tsx":
+/*!************************************************************************!*\
+  !*** ./src/web/components/MainArea/routes/NotAssigned/NotAssigned.tsx ***!
+  \************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   NotAssigned: () => (/* binding */ NotAssigned)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+
+const NotAssigned = () => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "Not Assigned" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Summary" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Assignee" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Fix bug in login page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "John Doe" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Add new feature" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Jane Smith" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Update user profile page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Mike Johnson" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] })] })] })] }));
+};
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/routes/index.ts":
+/*!*****************************************************!*\
+  !*** ./src/web/components/MainArea/routes/index.ts ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   AllTickets: () => (/* reexport safe */ _AllTickets_AllTickets__WEBPACK_IMPORTED_MODULE_0__.AllTickets),
+/* harmony export */   ClosedTicket: () => (/* reexport safe */ _ClosedTickets_ClosedTickets__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket),
+/* harmony export */   NotAssigned: () => (/* reexport safe */ _NotAssigned_NotAssigned__WEBPACK_IMPORTED_MODULE_1__.NotAssigned)
+/* harmony export */ });
+/* harmony import */ var _AllTickets_AllTickets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AllTickets/AllTickets */ "./src/web/components/MainArea/routes/AllTickets/AllTickets.tsx");
+/* harmony import */ var _NotAssigned_NotAssigned__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotAssigned/NotAssigned */ "./src/web/components/MainArea/routes/NotAssigned/NotAssigned.tsx");
+/* harmony import */ var _ClosedTickets_ClosedTickets__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ClosedTickets/ClosedTickets */ "./src/web/components/MainArea/routes/ClosedTickets/ClosedTickets.tsx");
+
+
+
 
 
 /***/ }),
@@ -37723,21 +37810,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SidemenuView: () => (/* binding */ SidemenuView)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/SideMenu/SideMenu */ "./src/web/styles/components/SideMenu/SideMenu.ts");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sideMenuItems.json */ "./src/web/components/SideMenu/sideMenuItems.json");
+/* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
+
 
 
 
 
 const SidemenuView = () => {
+    const { state, setState } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__.useSideMenuContext)();
     const [isActive, setActive] = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)("allTickets");
     const handleActive = (active) => {
         setActive(active);
+        setState(active);
     };
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Chamados" }) }), _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", { className: "side-menu__item", css: isActive === item.active ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapper, "data-is-active": isActive === item.active ? "true" : "false", onClick: () => handleActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { "aria-label": item.active, children: item.icon }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemText, children: item.text })] }, index))), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Pin" }) })] }) }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Chamados" }) }), _sideMenuItems_json__WEBPACK_IMPORTED_MODULE_2__.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("button", { className: "side-menu__item", css: isActive === item.active ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemWrapper, "data-is-active": isActive === item.active ? "true" : "false", onClick: () => handleActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", { "aria-label": item.active, children: item.icon }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.ItemText, children: item.text })] }, index))), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { className: "side-menu__section", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.Section, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", { className: "side-menu__section__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_0__.SectionText, children: "Pin" }) })] }) }));
 };
 
 
@@ -37766,6 +37857,80 @@ const TitleBarView = () => {
                                     window.titlebarEvents.minimize();
                                 }, css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.MinimizeButton, children: "-" }) })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", { className: "title-bar__title", css: _styles_components_TitleBar_TitleBar__WEBPACK_IMPORTED_MODULE_0__.ButtonsWrapper, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("span", { children: "Moden GLPI" }) })] }) }));
 };
+
+
+/***/ }),
+
+/***/ "./src/web/components/exportComponents.ts":
+/*!************************************************!*\
+  !*** ./src/web/components/exportComponents.ts ***!
+  \************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MainAreaView: () => (/* reexport safe */ _MainArea_MainAreaView__WEBPACK_IMPORTED_MODULE_2__.MainAreaView),
+/* harmony export */   SidemenuView: () => (/* reexport safe */ _SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_1__.SidemenuView),
+/* harmony export */   TitleBarView: () => (/* reexport safe */ _TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_0__.TitleBarView)
+/* harmony export */ });
+/* harmony import */ var _TitleBar_TitleBarView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TitleBar/TitleBarView */ "./src/web/components/TitleBar/TitleBarView.tsx");
+/* harmony import */ var _SideMenu_SideMenuView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./SideMenu/SideMenuView */ "./src/web/components/SideMenu/SideMenuView.tsx");
+/* harmony import */ var _MainArea_MainAreaView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./MainArea/MainAreaView */ "./src/web/components/MainArea/MainAreaView.tsx");
+
+
+
+
+
+/***/ }),
+
+/***/ "./src/web/contexts/SideMenuContext.tsx":
+/*!**********************************************!*\
+  !*** ./src/web/contexts/SideMenuContext.tsx ***!
+  \**********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SideMenuContextProvider: () => (/* binding */ SideMenuContextProvider),
+/* harmony export */   useSideMenuContext: () => (/* binding */ useSideMenuContext)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const SideMenuContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({});
+const useSideMenuContext = () => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(SideMenuContext);
+};
+const SideMenuContextProvider = ({ children }) => {
+    const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("allTickets");
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(SideMenuContext.Provider, { value: {
+            state,
+            setState
+        }, children: children }));
+};
+
+
+/***/ }),
+
+/***/ "./src/web/styles/app.ts":
+/*!*******************************!*\
+  !*** ./src/web/styles/app.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   root: () => (/* binding */ root)
+/* harmony export */ });
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
+
+const root = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
+    display: "flex",
+    height: "calc(100vh - 41px)",
+    width: "100vw"
+});
 
 
 /***/ }),
@@ -37829,7 +37994,6 @@ const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGBlack,
     flexDirection: "column",
     alignContent: "center",
-    height: "calc(100dvh - 41px)",
     width: "200px",
 });
 const Section = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({

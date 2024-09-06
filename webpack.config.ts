@@ -15,8 +15,8 @@ const common: Configuration = {
   resolve: {
     extensions: ['.js', '.ts', '.jsx', '.tsx', '.json'],
     alias: {
-      // プロジェクトルートの 'src' ディレクトリをエイリアス '@' として登録
-      '@': `${__dirname}/src`,
+      // プロジェクトルートの 'src' ディレクトリをエイリアス '@src' として登録
+      '@src': `${__dirname}/src`,
       // プロジェクトルートの 'src/web' ディレクトリをエイリアス '@web' として登録
       '@web': `${__dirname}/src/web`,
       // プロジェクトルートの 'src/web/styles' ディレクトリをエイリアス '@styles' として登録

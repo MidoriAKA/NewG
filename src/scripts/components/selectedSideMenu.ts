@@ -1,0 +1,1 @@
+export const SelectedSideMenu: Active = "allTickets";

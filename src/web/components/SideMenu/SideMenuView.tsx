@@ -2,12 +2,19 @@ import * as style from "@styles/components/SideMenu/SideMenu"
 import { useState } from "react";
 
 import sidemenuItems from "./sideMenuItems.json" assert { type: "json" };
+import { useSideMenuContext } from "@src/web/contexts/SideMenuContext";
 
 export const SidemenuView = () => {
+
+  const {
+    state,
+    setState
+  } = useSideMenuContext();
 
   const [isActive, setActive] = useState<Active>("allTickets");
   const handleActive = (active: Active) => {
     setActive(active);
+    setState(active);
   };
 
   return (
