@@ -5,19 +5,24 @@ import * as style from "@styles/app";
 
 import { TitleBarView, SidemenuView, MainAreaView } from "@components/exportComponents";
 import { SideMenuContextProvider } from "./contexts/SideMenuContext";
+import { TicketElementsContextProvider } from './contexts/TicketElementsContext';
 
 export const App = () => {
     return (
         <>
-            <TitleBarView />
-            <div
-                css={style.root}
-            >
-                <SideMenuContextProvider>
-                    <SidemenuView />
-                    <MainAreaView />
-                </SideMenuContextProvider>
-            </div>
+            <SideMenuContextProvider>
+
+                <TicketElementsContextProvider>
+                    <TitleBarView />
+                    <div
+                        css={style.root}
+                    >
+                        <SidemenuView />
+                        <MainAreaView />
+                    </div>
+
+                </TicketElementsContextProvider>
+            </SideMenuContextProvider>
         </>
     );
 };

@@ -37671,18 +37671,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   App: () => (/* binding */ App)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _App_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./App.css */ "./src/web/App.css");
 /* harmony import */ var _styles_app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/app */ "./src/web/styles/app.ts");
 /* harmony import */ var _components_exportComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @components/exportComponents */ "./src/web/components/exportComponents.ts");
 /* harmony import */ var _contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
+/* harmony import */ var _contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./contexts/TicketElementsContext */ "./src/web/contexts/TicketElementsContext.tsx");
+
 
 
 
 
 
 const App = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.TitleBarView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { css: _styles_app__WEBPACK_IMPORTED_MODULE_1__.root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__.SideMenuContextProvider, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.SidemenuView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.MainAreaView, {})] }) })] }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_3__.SideMenuContextProvider, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_4__.TicketElementsContextProvider, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.TitleBarView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", { css: _styles_app__WEBPACK_IMPORTED_MODULE_1__.root, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.SidemenuView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_components_exportComponents__WEBPACK_IMPORTED_MODULE_2__.MainAreaView, {})] })] }) }) }));
 };
 
 
@@ -37698,22 +37700,41 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   MainAreaView: () => (/* binding */ MainAreaView)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/MainArea/MainArea */ "./src/web/styles/components/MainArea/MainArea.ts");
 /* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
 /* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/index */ "./src/web/components/MainArea/routes/index.ts");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_3__);
+
 
 
 
 
 const MainAreaView = () => {
     const { state } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__.useSideMenuContext)();
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: state === "allTickets"
-            ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.AllTickets, {}) })
+    const [testData, setTestData] = (0,react__WEBPACK_IMPORTED_MODULE_3__.useState)([]);
+    (0,react__WEBPACK_IMPORTED_MODULE_3__.useEffect)(() => {
+        const fetchData = async () => {
+            try {
+                console.log("fetching data");
+                const data = await window.scrappedGlpiDatas.getData();
+                setTestData(data);
+                console.log("data fetched" + data);
+            }
+            catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+    console.dir("testData: " + testData);
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: state === "allTickets"
+            ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.AllTickets, { testData: testData }) })
             : state === "notAssigned"
-                ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.NotAssigned, {}) })
+                ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.NotAssigned, {}) })
                 : state === "closed"
-                    ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket, {}) })
+                    ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket, {}) })
                     : null // ここには来ない
      }));
 };
@@ -37733,7 +37754,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 
-const AllTickets = () => {
+const AllTickets = (testData) => {
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.Fragment, { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "All Tickets" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Title" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Sample Ticket 1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Open" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Sample Ticket 2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Sample Ticket 3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "In Progress" })] })] })] })] }));
 };
 
@@ -37908,6 +37929,48 @@ const SideMenuContextProvider = ({ children }) => {
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(SideMenuContext.Provider, { value: {
             state,
             setState
+        }, children: children }));
+};
+
+
+/***/ }),
+
+/***/ "./src/web/contexts/TicketElementsContext.tsx":
+/*!****************************************************!*\
+  !*** ./src/web/contexts/TicketElementsContext.tsx ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   TicketElementsContextProvider: () => (/* binding */ TicketElementsContextProvider),
+/* harmony export */   useTicketElementsContext: () => (/* binding */ useTicketElementsContext)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+const TicketElementsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
+const useTicketElementsContext = () => {
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(TicketElementsContext);
+};
+const TicketElementsContextProvider = ({ children }) => {
+    const [testData, setTestData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const fetchData = async () => {
+            try {
+                const data = await window.scrappedGlpiDatas.getData();
+                setTestData(data);
+            }
+            catch (error) {
+                console.error('Error fetching data:', error);
+            }
+        };
+        fetchData();
+    }, []);
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TicketElementsContext.Provider, { value: {
+            testData
         }, children: children }));
 };
 

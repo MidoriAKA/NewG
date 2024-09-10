@@ -1,4 +1,4 @@
-export const AllTickets = () => {
+export const AllTickets = (testData: any) => {
   return (
     <>
       <h1>All Tickets</h1>

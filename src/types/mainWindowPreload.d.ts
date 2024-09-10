@@ -3,9 +3,13 @@ export interface ITitlebarEvents {
   maximize: () => void;
   close: () => void;
 }
+export  interface IScrappedGlpiDatas {
+  getData: () => Promise<void>;
+}
 
 declare global {
   interface Window {
     titlebarEvents: ITitlebarEvents;
+    scrappedGlpiDatas: IScrappedGlpiDatas;
   }
 }
