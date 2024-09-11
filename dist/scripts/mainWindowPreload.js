@@ -10,5 +10,8 @@ electron_1.contextBridge.exposeInMainWorld("titlebarEvents", {
     },
     maximize: () => {
         electron_1.ipcRenderer.send("titlebarEvent", "maximize");
-    },
+    }
+});
+electron_1.contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
+    getData: () => electron_1.ipcRenderer.invoke("scrappedGlpiDatas:getData")
 });

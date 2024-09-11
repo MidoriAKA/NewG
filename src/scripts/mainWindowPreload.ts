@@ -9,5 +9,10 @@ contextBridge.exposeInMainWorld("titlebarEvents", {
   },
   maximize: () => {
     ipcRenderer.send("titlebarEvent", "maximize");
-  },
+  }
+});
+
+
+contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
+  getData: () => ipcRenderer.invoke("scrappedGlpiDatas:getData")
 });
