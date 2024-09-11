@@ -143,7 +143,7 @@ app.whenReady().then(() => {
             resolve();
           });
     }
-      const getCsvLink = `http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket&sort=19&order=DESC&criteria%5B0%5D%5Bfield%5D=12&criteria%5B0%5D%5Bsearchtype%5D=equals&criteria%5B0%5D%5Bvalue%5D=notold&display_type=-3&export.x=14&export.y=8&_glpi_csrf_token=${arg}`;
+      const getCsvLink = `http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket&sort=19&order=DESC&criteria%5B0%5D%5Bfield%5D=12&criteria%5B0%5D%5Bsearchtype%5D=equals&criteria%5B0%5D%5Bvalue%5D=notold&display_type=-3&export.x=12&export.y=13&_glpi_csrf_token=${arg}`;
       download(glpiScrapingView,getCsvLink, {
         directory: app.getPath("userData"),
         filename: "output.csv",

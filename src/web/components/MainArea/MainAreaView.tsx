@@ -12,28 +12,13 @@ export const MainAreaView = () => {
     state
   } = useSideMenuContext();
 
-  const [testData, setTestData] = useState([] as any);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log("fetching data");
-        const data = await window.scrappedGlpiDatas.getData();
-        setTestData(data);
-        console.log("data fetched" + data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  console.dir("testData: " + testData);
-
+  const {
+    ticketsDatas
+  } = useTicketElementsContext();
 
   return (
     <div
+      className="main-area__root"
       css={style.Root}
     >
       {
@@ -42,7 +27,7 @@ export const MainAreaView = () => {
             css={style.Container}
           >
             <AllTickets
-              testData={testData}
+              ticketsDatas={ticketsDatas}
             />
           </div>
 

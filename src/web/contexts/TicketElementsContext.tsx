@@ -7,13 +7,29 @@ export const useTicketElementsContext = () => {
 
 export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children }) => {
 
-  const [testData, setTestData] = useState([] as Array<any>);
+  const [ticketsDatas, setTicketsDatas] = useState([] as any);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const datas = await window.scrappedGlpiDatas.getData();
+        let arrayedDatas = [] as any;
+        datas.map((data: any, index: number) => {
+          data.ID = data.ID.replace(/\s/g, '');
+          arrayedDatas[index] = Object.entries(data);
+        });
+        setTicketsDatas(arrayedDatas);
+      } catch (error) {
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <TicketElementsContext.Provider
       value={{
-        testData,
-        setTestData
+        ticketsDatas
       }}>
       {children}
     </TicketElementsContext.Provider>
