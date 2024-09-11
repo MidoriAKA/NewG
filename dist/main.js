@@ -104,7 +104,7 @@ electron_1.app.whenReady().then(() => {
     // GLPIスクレイピング関連のIPC通信
     electron_1.ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
         console.log("csrfToken: " + arg);
-        // ダウンロードしたCSVファイルをJsonに変換してオブジェクトにする
+        // ダウンロードしたCSVファイルをJsonに変換して連想配列にする
         const downloadPath = electron_1.app.getPath("userData") + "/output.csv";
         const outputPath = electron_1.app.getPath("userData") + "/output.json";
         const convertCsvToJson = (csvPath, jsonPath) => {
@@ -144,11 +144,14 @@ electron_1.app.whenReady().then(() => {
             console.error(error);
         });
     });
-    function getGlpiData() {
-        const outputPath = electron_1.app.getPath("userData") + "/output.json";
-        return JSON.parse(fs_1.default.readFileSync(outputPath, "utf8"));
-    }
-    electron_1.ipcMain.handle("scrappedGlpiDatas:getData", getGlpiData);
+    electron_1.ipcMain.handle("scrappedGlpiDatas:getData", async () => {
+        const getGlpiData = async () => {
+            const outputPath = electron_1.app.getPath("userData") + "/output.json";
+            return JSON.parse(fs_1.default.readFileSync(outputPath, "utf8"));
+        };
+        return await getGlpiData();
+    });
+    //タイトルバー関連のIPC通信
     electron_1.ipcMain.on("titlebarEvent", (event, arg) => {
         switch (arg) {
             case "close":

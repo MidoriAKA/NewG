@@ -14,7 +14,5 @@ contextBridge.exposeInMainWorld("titlebarEvents", {
 
 
 contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
-  getData: () => {
-    ipcRenderer.invoke("scrappedGlpiDatas:getData");
-  },
+  getData: () => ipcRenderer.invoke("scrappedGlpiDatas:getData")
 });

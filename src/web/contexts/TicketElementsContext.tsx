@@ -9,23 +9,11 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
 
   const [testData, setTestData] = useState([] as Array<any>);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await window.scrappedGlpiDatas.getData();
-        setTestData(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-
-    fetchData();
-  }, []);
-
   return (
     <TicketElementsContext.Provider
       value={{
-        testData
+        testData,
+        setTestData
       }}>
       {children}
     </TicketElementsContext.Provider>

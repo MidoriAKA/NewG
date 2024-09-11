@@ -37957,20 +37957,9 @@ const useTicketElementsContext = () => {
 };
 const TicketElementsContextProvider = ({ children }) => {
     const [testData, setTestData] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
-        const fetchData = async () => {
-            try {
-                const data = await window.scrappedGlpiDatas.getData();
-                setTestData(data);
-            }
-            catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-        fetchData();
-    }, []);
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TicketElementsContext.Provider, { value: {
-            testData
+            testData,
+            setTestData
         }, children: children }));
 };
 

@@ -13,7 +13,5 @@ electron_1.contextBridge.exposeInMainWorld("titlebarEvents", {
     }
 });
 electron_1.contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
-    getData: () => {
-        electron_1.ipcRenderer.invoke("scrappedGlpiDatas:getData");
-    },
+    getData: () => electron_1.ipcRenderer.invoke("scrappedGlpiDatas:getData")
 });

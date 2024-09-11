@@ -113,11 +113,11 @@ app.whenReady().then(() => {
       loginStore.set(arg);
     });
 
-    // GLPIスクレイピング関連のIPC通信
+  // GLPIスクレイピング関連のIPC通信
     ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
       console.log("csrfToken: " + arg);
 
-      // ダウンロードしたCSVファイルをJsonに変換してオブジェクトにする
+      // ダウンロードしたCSVファイルをJsonに変換して連想配列にする
       const downloadPath = app.getPath("userData") + "/output.csv";
       const outputPath = app.getPath("userData") + "/output.json";
       const convertCsvToJson = (csvPath: string, jsonPath: string): Promise<void> => {
@@ -160,14 +160,17 @@ app.whenReady().then(() => {
         console.error(error);
       });
     });
-
-    function getGlpiData() {
-      const outputPath = app.getPath("userData") + "/output.json";
-      return JSON.parse(fs.readFileSync(outputPath, "utf8"));
-    }
       
-    ipcMain.handle("scrappedGlpiDatas:getData", getGlpiData);
+    ipcMain.handle("scrappedGlpiDatas:getData", async () => {
+      const getGlpiData = async () => {
+        const outputPath = app.getPath("userData") + "/output.json";
+        return JSON.parse(fs.readFileSync(outputPath, "utf8"));
+      }
+      return await getGlpiData();
+    });
 
+
+  //タイトルバー関連のIPC通信
     ipcMain.on("titlebarEvent", (event, arg) => {
       switch (arg) {
         case "close":
