@@ -15,5 +15,5 @@ export const Container: SerializedStyles = css({
   height: "100%",
   borderRadius: "10px",
   overflow: "hidden",
-  margin: "0 10px 10px 10px",
+  padding: "0 10px 10px 10px",
 });

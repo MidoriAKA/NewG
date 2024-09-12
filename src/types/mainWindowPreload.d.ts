@@ -4,7 +4,7 @@ export interface ITitlebarEvents {
   close: () => void;
 }
 export  interface IScrappedGlpiDatas {
-  getData: () => Promise<Array<any>>;
+  receiveData: (callback: (data: Array<any>) => void) => void;
 }
 
 declare global {

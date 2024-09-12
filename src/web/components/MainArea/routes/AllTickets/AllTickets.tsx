@@ -1,7 +1,6 @@
 import * as style from "@styles/components/MainArea/Tables";
 
 export const AllTickets = (ticketsDatas: any) => {
-  console.table(ticketsDatas);
   return (
     <div
       className="all-tickets__container"
@@ -20,9 +19,9 @@ export const AllTickets = (ticketsDatas: any) => {
             <th>Última atualização</th>
             <th>Data de abertura</th>
             <th>Prioridade</th>
-            <th>Requerente - Requerente</th>
-            <th>Atribuído para - Técnico</th>
-            <th>Atribuído para - Grupo técnico</th>
+            <th>Requerente</th>
+            <th>Atribuído p/ - Técnico</th>
+            <th>Atribuído p/ - Grupo técnico</th>
             <th>Categoria</th>
             <th>Aprovação - Status de aprovação</th>
             <th>Tempo para solução + Progresso</th>
@@ -33,13 +32,46 @@ export const AllTickets = (ticketsDatas: any) => {
             ticketsDatas.ticketsDatas.map((ticket: any, index: number) => {
               const tdElements = [];
               for (let i = 0; i < ticket.length; i++) {
-                tdElements.push(
-                  <td
-                    css={style.TableCell}
-                  >
-                    {ticket[i][1]}
-                  </td>
-                );
+                // tdElements.push(
+                //   <td
+                //     key={i}
+                //     css={style.TableCell}
+                //   >
+                //     {ticket[i][1]}
+                //   </td>
+                // );
+                switch (i) {
+                  case 3:
+                    tdElements.push(
+                      <td
+                        key={i}
+                        css={style.TableCell}
+                      >
+                        {ticket[i][1].toLocaleString()}
+                      </td>
+                    )
+                    break;
+                  case 4:
+                    tdElements.push(
+                      <td
+                        key={i}
+                        css={style.TableCell}
+                      >
+                        {ticket[i][1].toLocaleString()}
+                      </td>
+                    )
+                    break;
+                  default:
+                    tdElements.push(
+                      <td
+                        key={i}
+                        css={style.TableCell}
+                      >
+                        {ticket[i][1]}
+                      </td>
+                    );
+                    break;
+                }
               }
               tdElements.pop();
               return (

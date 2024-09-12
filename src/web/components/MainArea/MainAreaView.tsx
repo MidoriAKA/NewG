@@ -15,6 +15,7 @@ export const MainAreaView = () => {
   const {
     ticketsDatas
   } = useTicketElementsContext();
+  console.log(ticketsDatas);
 
   return (
     <div

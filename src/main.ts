@@ -114,32 +114,28 @@ app.whenReady().then(() => {
     });
 
   // GLPIスクレイピング関連のIPC通信
+    // ダウンロードしたCSVファイルをJsonに変換して保存する
+    //ついでにwebcontent.sendでデータを返す
     ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
-      console.log("csrfToken: " + arg);
-
-      // ダウンロードしたCSVファイルをJsonに変換して連想配列にする
       const downloadPath = app.getPath("userData") + "/output.csv";
       const outputPath = app.getPath("userData") + "/output.json";
       const convertCsvToJson = (csvPath: string, jsonPath: string): Promise<void> => {
         return new Promise((resolve, reject) => {
-
           let csvData = fs.readFileSync(csvPath, "utf8");
           if (csvData.charCodeAt(0) === 0xFEFF) {
             csvData = csvData.slice(1);
           }
-          
           parse(csvData, {
               delimiter: ";",
               columns: true,
               skip_empty_lines: true,
-            }, (err, output) => {
-              if (err) {
-                reject(err);
-                return;
-              }
-              fs.writeFileSync(jsonPath, JSON.stringify(output, null, 4), "utf8");
-            });
-
+          }, (err, output) => {
+            if (err) {
+              reject(err);
+              return;
+            }
+            fs.writeFileSync(jsonPath, JSON.stringify(output, null, 4), "utf8");
+          });
             resolve();
           });
     }
@@ -148,25 +144,18 @@ app.whenReady().then(() => {
         directory: app.getPath("userData"),
         filename: "output.csv",
       }).then(() => {
-        console.log("csv file downloaded");
         convertCsvToJson(downloadPath, outputPath)
-          .then(() => {
-            console.log("csv file converted to json");
-          })
+          .then(() => { })
           .catch((error) => {
             console.error(error);
           });
       }).catch((error) => {
         console.error(error);
       });
-    });
-      
-    ipcMain.handle("scrappedGlpiDatas:getData", async () => {
       const getGlpiData = async () => {
-        const outputPath = app.getPath("userData") + "/output.json";
         return JSON.parse(fs.readFileSync(outputPath, "utf8"));
       }
-      return await getGlpiData();
+      mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
     });
 
 

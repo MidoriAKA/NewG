@@ -12,6 +12,9 @@ electron_1.contextBridge.exposeInMainWorld("titlebarEvents", {
         electron_1.ipcRenderer.send("titlebarEvent", "maximize");
     }
 });
+electron_1.ipcRenderer.on("scrappedGlpiDatas:receiveData", (event, data) => {
+    console.log("scrappedGlpiDatas:receiveData");
+});
 electron_1.contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
-    getData: () => electron_1.ipcRenderer.invoke("scrappedGlpiDatas:getData")
+    receiveData: (callback) => electron_1.ipcRenderer.on("scrappedGlpiDatas:receiveData", (event, data) => callback(data))
 });

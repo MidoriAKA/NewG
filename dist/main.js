@@ -102,9 +102,9 @@ electron_1.app.whenReady().then(() => {
         loginStore.set(arg);
     });
     // GLPIスクレイピング関連のIPC通信
+    // ダウンロードしたCSVファイルをJsonに変換して保存する
+    //ついでにwebcontent.sendでデータを返す
     electron_1.ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
-        console.log("csrfToken: " + arg);
-        // ダウンロードしたCSVファイルをJsonに変換して連想配列にする
         const downloadPath = electron_1.app.getPath("userData") + "/output.csv";
         const outputPath = electron_1.app.getPath("userData") + "/output.json";
         const convertCsvToJson = (csvPath, jsonPath) => {
@@ -132,24 +132,18 @@ electron_1.app.whenReady().then(() => {
             directory: electron_1.app.getPath("userData"),
             filename: "output.csv",
         }).then(() => {
-            console.log("csv file downloaded");
             convertCsvToJson(downloadPath, outputPath)
-                .then(() => {
-                console.log("csv file converted to json");
-            })
+                .then(() => { })
                 .catch((error) => {
                 console.error(error);
             });
         }).catch((error) => {
             console.error(error);
         });
-    });
-    electron_1.ipcMain.handle("scrappedGlpiDatas:getData", async () => {
         const getGlpiData = async () => {
-            const outputPath = electron_1.app.getPath("userData") + "/output.json";
             return JSON.parse(fs_1.default.readFileSync(outputPath, "utf8"));
         };
-        return await getGlpiData();
+        mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
     });
     //タイトルバー関連のIPC通信
     electron_1.ipcMain.on("titlebarEvent", (event, arg) => {

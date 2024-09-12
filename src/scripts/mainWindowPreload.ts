@@ -12,7 +12,14 @@ contextBridge.exposeInMainWorld("titlebarEvents", {
   }
 });
 
+ipcRenderer.on("scrappedGlpiDatas:receiveData", (event, data) => {
+  console.log("scrappedGlpiDatas:receiveData");
+
+});
 
 contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
-  getData: () => ipcRenderer.invoke("scrappedGlpiDatas:getData")
+  receiveData: (callback: (data: Array<any>) => void) =>
+    ipcRenderer.on(
+      "scrappedGlpiDatas:receiveData", (event, data: Array<any>) => 
+      callback(data))
 });
