@@ -1,6 +1,15 @@
+import { useTicketElementsContext } from "@src/web/contexts/TicketElementsContext";
 import * as style from "@styles/components/MainArea/Tables";
 
-export const AllTickets = (ticketsDatas: any) => {
+export const AllTickets = () => {
+
+  const {
+    ticketsDatas
+  } = useTicketElementsContext();
+
+  console.log(ticketsDatas.length);
+  console.log(ticketsDatas[0]);
+
   return (
     <div
       className="all-tickets__container"
@@ -29,49 +38,41 @@ export const AllTickets = (ticketsDatas: any) => {
         </thead>
         <tbody>
           {
-            ticketsDatas.ticketsDatas.map((ticket: any, index: number) => {
+            // ticketsDatas.map((ticket: any, index: number) => {
+            //   const tdElements = [];
+            //   for (let i = 0; i === 12; i++) {
+            //     console.log(i);
+            //     tdElements.push(
+            //       <td
+            //         key={i}
+            //         css={style.TableCell}
+            //       >
+            //         {ticket[i][1]}
+            //       </td>
+            //     );
+            //   }
+            //   tdElements.pop();
+            //   return (
+            //     <tr
+            //       key={index}
+            //       css={style.TableRow}
+            //     >
+            //       {tdElements}
+            //     </tr>
+            //   );
+            // })
+            ticketsDatas.forEach((ticket: any, index: number) => {
               const tdElements = [];
-              for (let i = 0; i < ticket.length; i++) {
-                // tdElements.push(
-                //   <td
-                //     key={i}
-                //     css={style.TableCell}
-                //   >
-                //     {ticket[i][1]}
-                //   </td>
-                // );
-                switch (i) {
-                  case 3:
-                    tdElements.push(
-                      <td
-                        key={i}
-                        css={style.TableCell}
-                      >
-                        {ticket[i][1].toLocaleString()}
-                      </td>
-                    )
-                    break;
-                  case 4:
-                    tdElements.push(
-                      <td
-                        key={i}
-                        css={style.TableCell}
-                      >
-                        {ticket[i][1].toLocaleString()}
-                      </td>
-                    )
-                    break;
-                  default:
-                    tdElements.push(
-                      <td
-                        key={i}
-                        css={style.TableCell}
-                      >
-                        {ticket[i][1]}
-                      </td>
-                    );
-                    break;
-                }
+              for (let i = 0; i === 12; i++) {
+                console.log(i);
+                tdElements.push(
+                  <td
+                    key={i}
+                    css={style.TableCell}
+                  >
+                    {ticket[i][1]}
+                  </td>
+                );
               }
               tdElements.pop();
               return (

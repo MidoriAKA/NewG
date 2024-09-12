@@ -1,4 +1,4 @@
-import path, { delimiter } from "node:path";
+import path, { delimiter, format } from "node:path";
 import { app, BrowserView, BrowserWindow, ipcMain } from "electron";
 import electronReload from "electron-reload";
 import util from "util";
@@ -8,6 +8,7 @@ import fs from "fs";
 import {parse} from "csv-parse";
 import http from "http";
 import { download } from "electron-dl";
+import { json } from "stream/consumers";
 
 
 // 開発時には electron アプリをホットリロードする
@@ -117,8 +118,9 @@ app.whenReady().then(() => {
     // ダウンロードしたCSVファイルをJsonに変換して保存する
     //ついでにwebcontent.sendでデータを返す
     ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
-      const downloadPath = app.getPath("userData") + "/output.csv";
-      const outputPath = app.getPath("userData") + "/output.json";
+      const csvPath = app.getPath("userData") + "/downloaded.csv";
+      const jsonPath = app.getPath("userData") + "/rawTicketsDatas.json";
+      const formattedJsonPath = app.getPath("userData") + "/formattedTicketsDatas.json";
       const convertCsvToJson = (csvPath: string, jsonPath: string): Promise<void> => {
         return new Promise((resolve, reject) => {
           let csvData = fs.readFileSync(csvPath, "utf8");
@@ -139,6 +141,32 @@ app.whenReady().then(() => {
             resolve();
           });
     }
+      const formatJson = (jsonPath: string, saveTo: string): Promise<void> => {
+        return new Promise((resolve, reject) => {
+          const rawData = JSON.parse(fs.readFileSync(jsonPath, "utf8"));
+          let formattedJsonData = [] as Array<any>;
+          // IDの空白を削除
+          rawData.forEach((data: any, index: number) => {
+            data.ID = data.ID.replace(/\s/g, '');
+            formattedJsonData[index] = Object.entries(data);
+          });
+        
+          // 各配列の最後の要素を削除
+          formattedJsonData.forEach((element: any) => {
+            element.pop();
+          });
+        
+          // 日付の文字列を数字に変換
+          formattedJsonData.forEach((element: any) => {
+            element[3][1] = element[3][1].replace(/[-\s:]/g, '');
+            element[3][1] = Number(element[3][1]);
+            element[4][1] = element[4][1].replace(/[-\s:]/g, '');
+            element[4][1] = Number(element[4][1]);
+          });
+          fs.writeFileSync(saveTo, JSON.stringify(formattedJsonData, null, 4), "utf8");
+          resolve();
+        });
+      }
       const requestURLQuery = [
         ["http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket"],
         ["sort=19"],
@@ -156,17 +184,23 @@ app.whenReady().then(() => {
         ["_glpi_csrf_token="]
       ]
       const requestURL = requestURLQuery.join("&") + arg;
+
       download(glpiScrapingView, requestURL, {
         directory: app.getPath("userData"),
-        filename: "output.csv",
+        filename: "downloaded.csv",
       }).then(() => {
-        console.log("downloaded");
-
-        convertCsvToJson(downloadPath, outputPath)
-          .then(async () => {
-            console.log("converted");
-
-            mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
+        if (!fs.existsSync(jsonPath)) {
+          fs.writeFileSync(jsonPath, JSON.stringify([], null, 4), "utf8");
+        }
+        convertCsvToJson(csvPath, jsonPath)
+          .then(() => {
+            formatJson(jsonPath, formattedJsonPath)
+              .then(() => {
+                mainWindow.webContents.send("scrappedGlpiDatas:receiveData", JSON.parse(fs.readFileSync(formattedJsonPath, "utf8")));
+              })
+              .catch((error) => {
+                console.error(error);
+              });
           })
           .catch((error) => {
             console.error(error);
@@ -174,9 +208,6 @@ app.whenReady().then(() => {
       }).catch((error) => {
         console.error(error);
       });
-      const getGlpiData = async () => {
-        return JSON.parse(fs.readFileSync(outputPath, "utf8"));
-      }
     });
 
 

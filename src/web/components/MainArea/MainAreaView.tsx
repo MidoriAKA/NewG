@@ -12,10 +12,7 @@ export const MainAreaView = () => {
     state
   } = useSideMenuContext();
 
-  const {
-    ticketsDatas
-  } = useTicketElementsContext();
-  console.log(ticketsDatas);
+
 
   return (
     <div
@@ -28,7 +25,6 @@ export const MainAreaView = () => {
             css={style.Container}
           >
             <AllTickets
-              ticketsDatas={ticketsDatas}
             />
           </div>
 

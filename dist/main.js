@@ -105,8 +105,9 @@ electron_1.app.whenReady().then(() => {
     // ダウンロードしたCSVファイルをJsonに変換して保存する
     //ついでにwebcontent.sendでデータを返す
     electron_1.ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
-        const downloadPath = electron_1.app.getPath("userData") + "/output.csv";
-        const outputPath = electron_1.app.getPath("userData") + "/output.json";
+        const csvPath = electron_1.app.getPath("userData") + "/downloaded.csv";
+        const jsonPath = electron_1.app.getPath("userData") + "/rawTicketsDatas.json";
+        const formattedJsonPath = electron_1.app.getPath("userData") + "/formattedTicketsDatas.json";
         const convertCsvToJson = (csvPath, jsonPath) => {
             return new Promise((resolve, reject) => {
                 let csvData = fs_1.default.readFileSync(csvPath, "utf8");
@@ -124,6 +125,30 @@ electron_1.app.whenReady().then(() => {
                     }
                     fs_1.default.writeFileSync(jsonPath, JSON.stringify(output, null, 4), "utf8");
                 });
+                resolve();
+            });
+        };
+        const formatJson = (jsonPath, saveTo) => {
+            return new Promise((resolve, reject) => {
+                const rawData = JSON.parse(fs_1.default.readFileSync(jsonPath, "utf8"));
+                let formattedJsonData = [];
+                // IDの空白を削除
+                rawData.forEach((data, index) => {
+                    data.ID = data.ID.replace(/\s/g, '');
+                    formattedJsonData[index] = Object.entries(data);
+                });
+                // 各配列の最後の要素を削除
+                formattedJsonData.forEach((element) => {
+                    element.pop();
+                });
+                // 日付の文字列を数字に変換
+                formattedJsonData.forEach((element) => {
+                    element[3][1] = element[3][1].replace(/[-\s:]/g, '');
+                    element[3][1] = Number(element[3][1]);
+                    element[4][1] = element[4][1].replace(/[-\s:]/g, '');
+                    element[4][1] = Number(element[4][1]);
+                });
+                fs_1.default.writeFileSync(saveTo, JSON.stringify(formattedJsonData, null, 4), "utf8");
                 resolve();
             });
         };
@@ -146,13 +171,20 @@ electron_1.app.whenReady().then(() => {
         const requestURL = requestURLQuery.join("&") + arg;
         (0, electron_dl_1.download)(glpiScrapingView, requestURL, {
             directory: electron_1.app.getPath("userData"),
-            filename: "output.csv",
+            filename: "downloaded.csv",
         }).then(() => {
-            console.log("downloaded");
-            convertCsvToJson(downloadPath, outputPath)
-                .then(async () => {
-                console.log("converted");
-                mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
+            if (!fs_1.default.existsSync(jsonPath)) {
+                fs_1.default.writeFileSync(jsonPath, JSON.stringify([], null, 4), "utf8");
+            }
+            convertCsvToJson(csvPath, jsonPath)
+                .then(() => {
+                formatJson(jsonPath, formattedJsonPath)
+                    .then(() => {
+                    mainWindow.webContents.send("scrappedGlpiDatas:receiveData", JSON.parse(fs_1.default.readFileSync(formattedJsonPath, "utf8")));
+                })
+                    .catch((error) => {
+                    console.error(error);
+                });
             })
                 .catch((error) => {
                 console.error(error);
@@ -160,9 +192,6 @@ electron_1.app.whenReady().then(() => {
         }).catch((error) => {
             console.error(error);
         });
-        const getGlpiData = async () => {
-            return JSON.parse(fs_1.default.readFileSync(outputPath, "utf8"));
-        };
     });
     //タイトルバー関連のIPC通信
     electron_1.ipcMain.on("titlebarEvent", (event, arg) => {
