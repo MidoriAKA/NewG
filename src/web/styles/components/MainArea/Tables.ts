@@ -29,6 +29,15 @@ export const TableRow: SerializedStyles = css({
   },
 });
 
+export const TableCell_Title: SerializedStyles = css({
+  padding: "10px",
+  border: `1px solid ${theme.Colors.white}`,
+  textAlign: "left",
+  fontSize: "14px",
+  color: theme.Colors.white,
+  maxWidth: "200px",
+});
+
 export const TableCell: SerializedStyles = css({
   padding: "10px",
   border: `1px solid ${theme.Colors.white}`,

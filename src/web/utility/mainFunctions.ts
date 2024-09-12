@@ -19,7 +19,6 @@ export const convertCsvToJson = async (csvPath: string) => {
     console.log("parsed");
     const formattedJsonData = await formatJson(output);
     console.log("saved");
-    return formattedJsonData
   });
 }
 

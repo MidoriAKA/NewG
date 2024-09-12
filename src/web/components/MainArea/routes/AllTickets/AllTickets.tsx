@@ -6,10 +6,6 @@ export const AllTickets = () => {
   const {
     ticketsDatas
   } = useTicketElementsContext();
-
-  console.log(ticketsDatas.length);
-  console.log(ticketsDatas[0]);
-
   return (
     <div
       className="all-tickets__container"
@@ -38,7 +34,43 @@ export const AllTickets = () => {
         </thead>
         <tbody>
           {
-            // ticketsDatas.map((ticket: any, index: number) => {
+            ticketsDatas.map((ticket: any, index: number) => {
+              const tdElements = [];
+              const ticketLength = ticket.length;
+              for (let i = 0; i < ticketLength; i++) {
+                switch (i) {
+                  case 1:
+                    tdElements.push(
+                      <td
+                        key={i}
+                        css={style.TableCell_Title}
+                      >
+                        {ticket[i][1]}
+                      </td>
+                    );
+                    break;
+                  default:
+                    tdElements.push(
+                      <td
+                        key={i}
+                        css={style.TableCell}
+                      >
+                        {ticket[i][1]}
+                      </td>
+                    );
+                    break;
+                }
+              }
+              return (
+                <tr
+                  key={index}
+                  css={style.TableRow}
+                >
+                  {tdElements}
+                </tr>
+              );
+            })
+            // ticketsDatas.forEach((ticket: any, index: number) => {
             //   const tdElements = [];
             //   for (let i = 0; i === 12; i++) {
             //     console.log(i);
@@ -61,29 +93,6 @@ export const AllTickets = () => {
             //     </tr>
             //   );
             // })
-            ticketsDatas.forEach((ticket: any, index: number) => {
-              const tdElements = [];
-              for (let i = 0; i === 12; i++) {
-                console.log(i);
-                tdElements.push(
-                  <td
-                    key={i}
-                    css={style.TableCell}
-                  >
-                    {ticket[i][1]}
-                  </td>
-                );
-              }
-              tdElements.pop();
-              return (
-                <tr
-                  key={index}
-                  css={style.TableRow}
-                >
-                  {tdElements}
-                </tr>
-              );
-            })
           }
         </tbody>
       </table>
