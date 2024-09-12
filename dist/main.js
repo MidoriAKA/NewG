@@ -127,13 +127,33 @@ electron_1.app.whenReady().then(() => {
                 resolve();
             });
         };
-        const getCsvLink = `http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket&sort=19&order=DESC&criteria%5B0%5D%5Bfield%5D=12&criteria%5B0%5D%5Bsearchtype%5D=equals&criteria%5B0%5D%5Bvalue%5D=notold&display_type=-3&export.x=12&export.y=13&_glpi_csrf_token=${arg}`;
-        (0, electron_dl_1.download)(glpiScrapingView, getCsvLink, {
+        const requestURLQuery = [
+            ["http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket"],
+            ["sort=19"],
+            ["order=DESC"],
+            ["criteria%5B0%5D%5Bfield%5D=12"],
+            ["criteria%5B0%5D%5Bsearchtype%5D=equals"],
+            ["criteria%5B0%5D%5Bvalue%5D=all"],
+            ["criteria%5B1%5D%5Blink%5D=AND"],
+            ["criteria%5B1%5D%5Bfield%5D=15"],
+            ["criteria%5B1%5D%5Bsearchtype%5D=morethan"],
+            ["criteria%5B1%5D%5Bvalue%5D=-1YEAR"],
+            ["display_type=-3"],
+            ["export.x=11"],
+            ["export.y=9"],
+            ["_glpi_csrf_token="]
+        ];
+        const requestURL = requestURLQuery.join("&") + arg;
+        (0, electron_dl_1.download)(glpiScrapingView, requestURL, {
             directory: electron_1.app.getPath("userData"),
             filename: "output.csv",
         }).then(() => {
+            console.log("downloaded");
             convertCsvToJson(downloadPath, outputPath)
-                .then(() => { })
+                .then(async () => {
+                console.log("converted");
+                mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
+            })
                 .catch((error) => {
                 console.error(error);
             });
@@ -143,7 +163,6 @@ electron_1.app.whenReady().then(() => {
         const getGlpiData = async () => {
             return JSON.parse(fs_1.default.readFileSync(outputPath, "utf8"));
         };
-        mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
     });
     //タイトルバー関連のIPC通信
     electron_1.ipcMain.on("titlebarEvent", (event, arg) => {
