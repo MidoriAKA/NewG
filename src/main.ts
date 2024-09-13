@@ -163,12 +163,10 @@ app.whenReady().then(() => {
             data.ID = data.ID.replace(/\s/g, '');
             formattedJsonData[index] = Object.entries(data);
           });
-        
           // 各配列の最後の要素を削除
           formattedJsonData.forEach((element: any) => {
             element.pop();
           });
-        
           // 日付の文字列を数字に変換しYYYYMMDDHHmmss形式にする
           formattedJsonData.forEach((element: any) => {
             element[3][1] = element[3][1].replace(/[-\s:]/g, '');
