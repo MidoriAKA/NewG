@@ -153,11 +153,13 @@ electron_1.app.whenReady().then(() => {
             formattedJsonData.forEach((element) => {
                 element.pop();
             });
-            // 日付の文字列を数字に変換
+            // 日付の文字列を数字に変換しYYYYMMDDHHmmss形式にする
             formattedJsonData.forEach((element) => {
                 element[3][1] = element[3][1].replace(/[-\s:]/g, '');
+                element[3][1] = element[3][1].replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
                 element[3][1] = Number(element[3][1]);
                 element[4][1] = element[4][1].replace(/[-\s:]/g, '');
+                element[4][1] = element[4][1].replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
                 element[4][1] = Number(element[4][1]);
             });
             fs_1.default.writeFileSync(saveTo, JSON.stringify(formattedJsonData, null, 4), "utf8");

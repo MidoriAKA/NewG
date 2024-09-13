@@ -49,6 +49,20 @@ export const AllTickets = () => {
                       </td>
                     );
                     break;
+                  case 3:
+                  case 4:
+                    tdElements.push(
+                      <td
+                        key={i}
+                        css={style.TableCell}
+                      >
+                        {
+                          ticket[i][1]
+                            .toString()
+                            .replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1/$2/$3 $4:$5')}
+                      </td>
+                    );
+                    break;
                   default:
                     tdElements.push(
                       <td

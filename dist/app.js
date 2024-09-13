@@ -37749,6 +37749,12 @@ const AllTickets = () => {
                                 case 1:
                                     tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell_Title, children: ticket[i][1] }, i));
                                     break;
+                                case 3:
+                                case 4:
+                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1]
+                                            .toString()
+                                            .replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1/$2/$3 $4:$5') }, i));
+                                    break;
                                 default:
                                     tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1] }, i));
                                     break;
