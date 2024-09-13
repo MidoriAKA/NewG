@@ -1,6 +1,11 @@
+import { useTicketElementsContext } from "@src/web/contexts/TicketElementsContext";
 import * as style from "@styles/components/MainArea/Tables";
 
-export const AllTickets = (ticketsDatas: any) => {
+export const AllTickets = () => {
+
+  const {
+    ticketsDatas
+  } = useTicketElementsContext();
   return (
     <div
       className="all-tickets__container"
@@ -29,37 +34,34 @@ export const AllTickets = (ticketsDatas: any) => {
         </thead>
         <tbody>
           {
-            ticketsDatas.ticketsDatas.map((ticket: any, index: number) => {
+            ticketsDatas.map((ticket: any, index: number) => {
               const tdElements = [];
-              for (let i = 0; i < ticket.length; i++) {
-                // tdElements.push(
-                //   <td
-                //     key={i}
-                //     css={style.TableCell}
-                //   >
-                //     {ticket[i][1]}
-                //   </td>
-                // );
+              const ticketLength = ticket.length;
+              for (let i = 0; i < ticketLength; i++) {
                 switch (i) {
-                  case 3:
+                  case 1:
                     tdElements.push(
                       <td
                         key={i}
-                        css={style.TableCell}
+                        css={style.TableCell_Title}
                       >
-                        {ticket[i][1].toLocaleString()}
+                        {ticket[i][1]}
                       </td>
-                    )
+                    );
                     break;
+                  case 3:
                   case 4:
                     tdElements.push(
                       <td
                         key={i}
                         css={style.TableCell}
                       >
-                        {ticket[i][1].toLocaleString()}
+                        {
+                          ticket[i][1]
+                            .toString()
+                            .replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1/$2/$3 $4:$5')}
                       </td>
-                    )
+                    );
                     break;
                   default:
                     tdElements.push(
@@ -73,7 +75,6 @@ export const AllTickets = (ticketsDatas: any) => {
                     break;
                 }
               }
-              tdElements.pop();
               return (
                 <tr
                   key={index}
@@ -83,6 +84,29 @@ export const AllTickets = (ticketsDatas: any) => {
                 </tr>
               );
             })
+            // ticketsDatas.forEach((ticket: any, index: number) => {
+            //   const tdElements = [];
+            //   for (let i = 0; i === 12; i++) {
+            //     console.log(i);
+            //     tdElements.push(
+            //       <td
+            //         key={i}
+            //         css={style.TableCell}
+            //       >
+            //         {ticket[i][1]}
+            //       </td>
+            //     );
+            //   }
+            //   tdElements.pop();
+            //   return (
+            //     <tr
+            //       key={index}
+            //       css={style.TableRow}
+            //     >
+            //       {tdElements}
+            //     </tr>
+            //   );
+            // })
           }
         </tbody>
       </table>

@@ -11,6 +11,7 @@ const electron_store_1 = __importDefault(require("electron-store"));
 const fs_1 = __importDefault(require("fs"));
 const csv_parse_1 = require("csv-parse");
 const electron_dl_1 = require("electron-dl");
+const promises_1 = require("node:stream/promises");
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
     (0, electron_reload_1.default)(__dirname, {
@@ -105,27 +106,69 @@ electron_1.app.whenReady().then(() => {
     // ダウンロードしたCSVファイルをJsonに変換して保存する
     //ついでにwebcontent.sendでデータを返す
     electron_1.ipcMain.on("glpiScrapingView-to-mainWindow:csrf-token", async (event, arg) => {
-        const downloadPath = electron_1.app.getPath("userData") + "/output.csv";
-        const outputPath = electron_1.app.getPath("userData") + "/output.json";
-        const convertCsvToJson = (csvPath, jsonPath) => {
-            return new Promise((resolve, reject) => {
-                let csvData = fs_1.default.readFileSync(csvPath, "utf8");
-                if (csvData.charCodeAt(0) === 0xFEFF) {
-                    csvData = csvData.slice(1);
-                }
-                (0, csv_parse_1.parse)(csvData, {
+        const csvPath = electron_1.app.getPath("userData") + "/downloaded.csv";
+        const jsonPath = electron_1.app.getPath("userData") + "/rawTicketsDatas.json";
+        const formattedJsonPath = electron_1.app.getPath("userData") + "/formattedTicketsDatas.json";
+        const convertCsvToJson = async (csvPath, jsonPath) => {
+            console.log("start");
+            let csvData = fs_1.default.readFileSync(csvPath, "utf8");
+            if (csvData.charCodeAt(0) === 0xFEFF) {
+                csvData = csvData.slice(1);
+            }
+            const processFile = async () => {
+                const records = [];
+                const parser = fs_1.default
+                    .createReadStream(csvPath)
+                    .pipe((0, csv_parse_1.parse)({
                     delimiter: ";",
                     columns: true,
                     skip_empty_lines: true,
-                }, (err, output) => {
-                    if (err) {
-                        reject(err);
-                        return;
+                    bom: true
+                }));
+                parser.on('readable', function () {
+                    let record;
+                    while ((record = parser.read()) !== null) {
+                        // Work with each record
+                        records.push(record);
                     }
-                    fs_1.default.writeFileSync(jsonPath, JSON.stringify(output, null, 4), "utf8");
                 });
-                resolve();
+                await (0, promises_1.finished)(parser);
+                return records;
+            };
+            const records = await processFile();
+            // const parsedData = parse(csvData, { delimiter: ";", columns: true, skip_empty_lines: true});
+            console.log("parsed");
+            fs_1.default.writeFileSync(jsonPath, JSON.stringify(records, null, 4), "utf8");
+            console.log("saved");
+        };
+        const formatJson = async (jsonPath, saveTo) => {
+            const rawData = JSON.parse(fs_1.default.readFileSync(jsonPath, "utf8"));
+            let formattedJsonData = [];
+            // IDの空白を削除
+            rawData.forEach((data, index) => {
+                data.ID = data.ID.replace(/\s/g, '');
+                formattedJsonData[index] = Object.entries(data);
             });
+            // 各配列の最後の要素を削除
+            formattedJsonData.forEach((element) => {
+                element.pop();
+            });
+            // 日付の文字列を数字に変換しYYYYMMDDHHmmss形式にする
+            formattedJsonData.forEach((element) => {
+                element[3][1] = element[3][1].replace(/[-\s:]/g, '');
+                element[3][1] = element[3][1].replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
+                element[3][1] = Number(element[3][1]);
+                element[4][1] = element[4][1].replace(/[-\s:]/g, '');
+                element[4][1] = element[4][1].replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
+                element[4][1] = Number(element[4][1]);
+            });
+            fs_1.default.writeFileSync(saveTo, JSON.stringify(formattedJsonData, null, 4), "utf8");
+        };
+        const sendTicketsDatas = async (formattedJsonPath) => {
+            console.log("sending tickets datas");
+            const ticketsDatas = JSON.parse(fs_1.default.readFileSync(formattedJsonPath, "utf8"));
+            mainWindow.webContents.send("scrappedGlpiDatas:receiveData", ticketsDatas);
+            console.log("sent");
         };
         const requestURLQuery = [
             ["http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket"],
@@ -144,25 +187,14 @@ electron_1.app.whenReady().then(() => {
             ["_glpi_csrf_token="]
         ];
         const requestURL = requestURLQuery.join("&") + arg;
-        (0, electron_dl_1.download)(glpiScrapingView, requestURL, {
+        await (0, electron_dl_1.download)(mainWindow, requestURL, {
             directory: electron_1.app.getPath("userData"),
-            filename: "output.csv",
-        }).then(() => {
-            console.log("downloaded");
-            convertCsvToJson(downloadPath, outputPath)
-                .then(async () => {
-                console.log("converted");
-                mainWindow.webContents.send("scrappedGlpiDatas:receiveData", await getGlpiData());
-            })
-                .catch((error) => {
-                console.error(error);
-            });
-        }).catch((error) => {
-            console.error(error);
+            filename: "downloaded.csv",
+            saveAs: false,
         });
-        const getGlpiData = async () => {
-            return JSON.parse(fs_1.default.readFileSync(outputPath, "utf8"));
-        };
+        await convertCsvToJson(csvPath, jsonPath);
+        await formatJson(jsonPath, formattedJsonPath);
+        await sendTicketsDatas(formattedJsonPath);
     });
     //タイトルバー関連のIPC通信
     electron_1.ipcMain.on("titlebarEvent", (event, arg) => {
