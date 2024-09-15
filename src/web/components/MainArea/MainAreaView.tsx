@@ -9,7 +9,7 @@ import { useEffect, useState } from "react";
 
 export const MainAreaView = () => {
   const {
-    state
+    currentActive
   } = useSideMenuContext();
 
 
@@ -20,7 +20,7 @@ export const MainAreaView = () => {
       css={style.Root}
     >
       {
-        state === "allTickets"
+        currentActive === "allTickets"
           ? <div
             css={style.Container}
           >
@@ -28,7 +28,7 @@ export const MainAreaView = () => {
             />
           </div>
 
-          : state === "notAssigned"
+          : currentActive === "notAssigned"
             ? <div
               css={style.Container}
             >
@@ -36,7 +36,7 @@ export const MainAreaView = () => {
               />
             </div>
 
-            : state === "closed"
+            : currentActive === "closed"
               ? <div
                 css={style.Container}
               >
