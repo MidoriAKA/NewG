@@ -1,4 +1,8 @@
 type Active =
   | "allTickets"
   | "notAssigned"
-  | "closed";
+  | "closed"
+  | "n1"
+  | "n2Sup"
+  | "n2Tech"
+  | "systems"

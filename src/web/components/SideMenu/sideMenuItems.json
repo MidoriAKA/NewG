@@ -1,17 +1,54 @@
 [
-  {
-    "icon": "📥",
-    "text": "Todos",
-    "active": "allTickets"
-  },
-  {
-    "icon": "📝",
-    "text": "Não Atribuídos",
-    "active": "notAssigned"
-  },
-  {
-    "icon": "📂",
-    "text": "Fechados",
-    "active": "closed"
-  }
+  [
+    "Geral",
+    [
+      {
+        "icon": "📥",
+        "text": "Todos",
+        "active": "allTickets",
+        "isActive": true
+      },
+      {
+        "icon": "📝",
+        "text": "Não Atribuídos",
+        "active": "notAssigned",
+        "isActive": false
+      },
+      {
+        "icon": "📂",
+        "text": "Fechados",
+        "active": "closed",
+        "isActive": false
+      }
+    ]
+  ],
+  [
+    "Grupo técnico",
+    [
+      {
+        "icon": "👥1️⃣",
+        "text": "Nivel 1",
+        "active": "n1",
+        "isActive": false
+      },
+      {
+        "icon": "👥2️⃣",
+        "text": "Suporte",
+        "active": "n2Sup",
+        "isActive": false
+      },
+      {
+        "icon": "👥2️⃣",
+        "text": "Tecnologia",
+        "active": "n2Tech",
+        "isActive": false
+      },
+      {
+        "icon": "🔨",
+        "text": "Sistemas",
+        "active": "systems",
+        "isActive": false
+      }
+    ]
+  ]
 ]
