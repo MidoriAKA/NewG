@@ -19,17 +19,15 @@ export const AllTickets = () => {
           css={style.TableHeader}
         >
           <tr>
-            {
-              tableHeaders.map((header: string, index: number) => {
-                return (
-                  <th
-                    key={index}
-                  >
-                    {header}
-                  </th>
-                );
-              })
-            }
+            {tableHeaders.map((header: string, index: number) => {
+              return (
+                <th
+                  key={index}
+                >
+                  {header}
+                </th>
+              );
+            })}
           </tr>
         </thead>
         <tbody>
@@ -84,29 +82,6 @@ export const AllTickets = () => {
                 </tr>
               );
             })
-            // ticketsDatas.forEach((ticket: any, index: number) => {
-            //   const tdElements = [];
-            //   for (let i = 0; i === 12; i++) {
-            //     console.log(i);
-            //     tdElements.push(
-            //       <td
-            //         key={i}
-            //         css={style.TableCell}
-            //       >
-            //         {ticket[i][1]}
-            //       </td>
-            //     );
-            //   }
-            //   tdElements.pop();
-            //   return (
-            //     <tr
-            //       key={index}
-            //       css={style.TableRow}
-            //     >
-            //       {tdElements}
-            //     </tr>
-            //   );
-            // })
           }
         </tbody>
       </table>

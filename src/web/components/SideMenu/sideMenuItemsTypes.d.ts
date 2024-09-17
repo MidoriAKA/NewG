@@ -1,5 +1,6 @@
 type Active =
   | "allTickets"
+  | "assignedToMe"
   | "notAssigned"
   | "closed"
   | "n1"

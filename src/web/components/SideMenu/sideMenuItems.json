@@ -9,6 +9,12 @@
         "isActive": true
       },
       {
+        "icon": "🙍‍♂️",
+        "text": "Meus Chamados",
+        "active": "assignedToMe",
+        "isActive": false
+      },
+      {
         "icon": "📝",
         "text": "Não Atribuídos",
         "active": "notAssigned",

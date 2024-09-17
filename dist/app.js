@@ -37703,21 +37703,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/MainArea/MainArea */ "./src/web/styles/components/MainArea/MainArea.ts");
 /* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
-/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/index */ "./src/web/components/MainArea/routes/index.ts");
+/* harmony import */ var _routes_config_routesComponents__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/config/routesComponents */ "./src/web/components/MainArea/routes/config/routesComponents.ts");
 
 
 
 
 const MainAreaView = () => {
     const { currentActive } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__.useSideMenuContext)();
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "main-area__root", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: currentActive === "allTickets"
-            ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.AllTickets, {}) })
-            : currentActive === "notAssigned"
-                ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.NotAssigned, {}) })
-                : currentActive === "closed"
-                    ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket, {}) })
-                    : null // ここには来ない
-     }));
+    const renderContent = (current) => {
+        const RouteComponent = _routes_config_routesComponents__WEBPACK_IMPORTED_MODULE_2__.renderComponent[current];
+        return RouteComponent ? (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(RouteComponent, {}) : (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { children: "404" });
+        ;
+    };
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "main-area__root", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: renderContent(currentActive) }) }));
 };
 
 
@@ -37733,34 +37731,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AllTickets: () => (/* binding */ AllTickets)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @src/web/contexts/TicketElementsContext */ "./src/web/contexts/TicketElementsContext.tsx");
 /* harmony import */ var _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/components/MainArea/Tables */ "./src/web/styles/components/MainArea/Tables.ts");
+/* harmony import */ var _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/tableHeaders */ "./src/web/components/MainArea/routes/config/tableHeaders.ts");
+
 
 
 
 const AllTickets = () => {
     const { ticketsDatas } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "all-tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "T\u00EDtulo" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Status" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "\u00DAltima atualiza\u00E7\u00E3o" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Data de abertura" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Prioridade" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Requerente" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Atribu\u00EDdo p/ - T\u00E9cnico" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Atribu\u00EDdo p/ - Grupo t\u00E9cnico" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Categoria" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Aprova\u00E7\u00E3o - Status de aprova\u00E7\u00E3o" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("th", { children: "Tempo para solu\u00E7\u00E3o + Progresso" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tbody", { children: ticketsDatas.map((ticket, index) => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "all-tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.map((header, index) => {
+                            return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", { children: header }, index));
+                        }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: ticketsDatas.map((ticket, index) => {
                         const tdElements = [];
                         const ticketLength = ticket.length;
                         for (let i = 0; i < ticketLength; i++) {
                             switch (i) {
                                 case 1:
-                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell_Title, children: ticket[i][1] }, i));
+                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell_Title, children: ticket[i][1] }, i));
                                     break;
                                 case 3:
                                 case 4:
-                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1]
+                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1]
                                             .toString()
                                             .replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1/$2/$3 $4:$5') }, i));
                                     break;
                                 default:
-                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1] }, i));
+                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1] }, i));
                                     break;
                             }
                         }
-                        return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("tr", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableRow, children: tdElements }, index));
+                        return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableRow, children: tdElements }, index));
                     }) })] }) }));
 };
 
@@ -37801,6 +37803,60 @@ __webpack_require__.r(__webpack_exports__);
 const NotAssigned = () => {
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "Not Assigned" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Summary" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Assignee" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Fix bug in login page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "John Doe" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Add new feature" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Jane Smith" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Update user profile page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Mike Johnson" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] })] })] })] }));
 };
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/routes/config/routesComponents.ts":
+/*!***********************************************************************!*\
+  !*** ./src/web/components/MainArea/routes/config/routesComponents.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   renderComponent: () => (/* binding */ renderComponent)
+/* harmony export */ });
+/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../index */ "./src/web/components/MainArea/routes/index.ts");
+
+const renderComponent = {
+    allTickets: _index__WEBPACK_IMPORTED_MODULE_0__.AllTickets,
+    assignedToMe: undefined,
+    notAssigned: _index__WEBPACK_IMPORTED_MODULE_0__.NotAssigned,
+    closed: _index__WEBPACK_IMPORTED_MODULE_0__.ClosedTicket,
+    n1: undefined,
+    n2Sup: undefined,
+    n2Tech: undefined,
+    systems: undefined
+};
+
+
+/***/ }),
+
+/***/ "./src/web/components/MainArea/routes/config/tableHeaders.ts":
+/*!*******************************************************************!*\
+  !*** ./src/web/components/MainArea/routes/config/tableHeaders.ts ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   tableHeaders: () => (/* binding */ tableHeaders)
+/* harmony export */ });
+const tableHeaders = [
+    "ID",
+    "Título",
+    "Status",
+    "Última atualização",
+    "Data de abertura",
+    "Prioridade",
+    "Requerente",
+    "Atribuído p/ - Técnico",
+    "Atribuído p/ - Grupo técnico",
+    "Categoria",
+    "Aprovação - Status de aprovação",
+    "Tempo para solução + Progresso"
+];
 
 
 /***/ }),
@@ -39429,7 +39485,7 @@ function combine (array, callback) {
   \********************************************************/
 /***/ ((module) => {
 
-module.exports = /*#__PURE__*/JSON.parse('[["Geral",[{"icon":"📥","text":"Todos","active":"allTickets","isActive":true},{"icon":"📝","text":"Não Atribuídos","active":"notAssigned","isActive":false},{"icon":"📂","text":"Fechados","active":"closed","isActive":false}]],["Grupo técnico",[{"icon":"👥1️⃣","text":"Nivel 1","active":"n1","isActive":false},{"icon":"👥2️⃣","text":"Suporte","active":"n2Sup","isActive":false},{"icon":"👥2️⃣","text":"Tecnologia","active":"n2Tech","isActive":false},{"icon":"🔨","text":"Sistemas","active":"systems","isActive":false}]]]');
+module.exports = /*#__PURE__*/JSON.parse('[["Geral",[{"icon":"📥","text":"Todos","active":"allTickets","isActive":true},{"icon":"🙍‍♂️","text":"Meus Chamados","active":"assignedToMe","isActive":false},{"icon":"📝","text":"Não Atribuídos","active":"notAssigned","isActive":false},{"icon":"📂","text":"Fechados","active":"closed","isActive":false}]],["Grupo técnico",[{"icon":"👥1️⃣","text":"Nivel 1","active":"n1","isActive":false},{"icon":"👥2️⃣","text":"Suporte","active":"n2Sup","isActive":false},{"icon":"👥2️⃣","text":"Tecnologia","active":"n2Tech","isActive":false},{"icon":"🔨","text":"Sistemas","active":"systems","isActive":false}]]]');
 
 /***/ })
 

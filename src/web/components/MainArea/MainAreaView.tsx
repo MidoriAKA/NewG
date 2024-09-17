@@ -1,25 +1,16 @@
 import * as style from "@styles/components/MainArea/MainArea";
 
 import { useSideMenuContext } from "@src/web/contexts/SideMenuContext";
-
-import { AllTickets, NotAssigned, ClosedTicket } from "./routes/index";
+import { renderComponent } from "./routes/config/routesComponents";
 
 export const MainAreaView = () => {
   const {
     currentActive
   } = useSideMenuContext();
 
-  const renderContent = () => {
-    switch (currentActive) {
-      case "allTickets":
-        return <AllTickets />;
-      case "notAssigned":
-        return <NotAssigned />;
-      case "closed":
-        return <ClosedTicket />;
-      default:
-        return <AllTickets />;
-    }
+  const renderContent = (current: Active) => {
+    const RouteComponent = renderComponent[current];
+    return RouteComponent ? <RouteComponent /> : <div>404</div>;;
   }
 
   return (
@@ -30,7 +21,7 @@ export const MainAreaView = () => {
       <div
         css={style.Container}
       >
-        {renderContent()}
+        {renderContent(currentActive)}
       </div>
     </div>
   );
