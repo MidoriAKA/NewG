@@ -1,5 +1,6 @@
 import { useTicketElementsContext } from "@src/web/contexts/TicketElementsContext";
 import * as style from "@styles/components/MainArea/Tables";
+import { tableHeaders } from "../config/tableHeaders";
 
 export const AllTickets = () => {
 
@@ -18,18 +19,17 @@ export const AllTickets = () => {
           css={style.TableHeader}
         >
           <tr>
-            <th>ID</th>
-            <th>Título</th>
-            <th>Status</th>
-            <th>Última atualização</th>
-            <th>Data de abertura</th>
-            <th>Prioridade</th>
-            <th>Requerente</th>
-            <th>Atribuído p/ - Técnico</th>
-            <th>Atribuído p/ - Grupo técnico</th>
-            <th>Categoria</th>
-            <th>Aprovação - Status de aprovação</th>
-            <th>Tempo para solução + Progresso</th>
+            {
+              tableHeaders.map((header: string, index: number) => {
+                return (
+                  <th
+                    key={index}
+                  >
+                    {header}
+                  </th>
+                );
+              })
+            }
           </tr>
         </thead>
         <tbody>
