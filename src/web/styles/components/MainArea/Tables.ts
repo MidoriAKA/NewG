@@ -21,6 +21,7 @@ export const TableHeader: SerializedStyles = css({
   fontWeight: "bold",
   position: "sticky",
   top: "0",
+  border: `1px solid ${theme.Colors.white}`,
 });
 
 export const TableRow: SerializedStyles = css({

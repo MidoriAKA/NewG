@@ -37748,7 +37748,6 @@ __webpack_require__.r(__webpack_exports__);
 
 const AllTickets = () => {
     const { showingTickets } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
-    console.dir(showingTickets);
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "all-tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.map((header, index) => {
                             return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", { children: header }, index));
                         }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: showingTickets.map((ticketObj, index) => {
@@ -37876,16 +37875,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   SectionsView: () => (/* binding */ SectionsView)
 /* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
 /* harmony import */ var _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/components/SideMenu/SideMenu */ "./src/web/styles/components/SideMenu/SideMenu.ts");
+/* harmony import */ var _src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @src/web/contexts/TicketElementsContext */ "./src/web/contexts/TicketElementsContext.tsx");
+
 
 
 
 const SectionsView = (props) => {
-    const { currentActive, handleActive, } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_0__.useSideMenuContext)();
+    const { handleActive, } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_0__.useSideMenuContext)();
+    const { setCurrentActive } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_2__.useTicketElementsContext)();
     const sectionItems = props.sidemenuItems[1];
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.Container, children: [props.children, sectionItems.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("button", { className: "side-menu__item", css: item.isActive ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemWrapper, "data-is-active": item.isActive ? "true" : "false", onClick: () => handleActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", { "aria-label": item.text, children: item.icon }, `item__icon-${item.active}-${index}`) }, `item__icon-${item.active}-${index}`), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemText, children: item.text }, `item__text-${item.active}-${index}`)] }, `item__wrapper-${item.active}-${index}`)))] }) }));
+    const tempHandleActive = (active) => {
+        handleActive(active);
+        setCurrentActive(active);
+    };
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", { className: "side-menu", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.Container, children: [props.children, sectionItems.map((item, index) => ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("button", { className: "side-menu__item", css: item.isActive ? _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemWrapperActive : _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemWrapper, "data-is-active": item.isActive ? "true" : "false", onClick: () => tempHandleActive(item.active), children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "side-menu__item__icon", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemIcon, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { "aria-label": item.text, children: item.icon }, `item__icon-${item.active}-${index}`) }, `item__icon-${item.active}-${index}`), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", { className: "side-menu__item__text", css: _styles_components_SideMenu_SideMenu__WEBPACK_IMPORTED_MODULE_1__.ItemText, children: item.text }, `item__text-${item.active}-${index}`)] }, `item__wrapper-${item.active}-${index}`)))] }) }));
 };
 
 
@@ -38038,19 +38044,74 @@ const useTicketElementsContext = () => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(TicketElementsContext);
 };
 const TicketElementsContextProvider = ({ children }) => {
+    const [currentActive, setCurrentActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("allTickets");
     const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-    const [pageSize, setPageSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
+    const [pageSize, setPageSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(6);
+    const [filter, setFilter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("assignedToGroup");
     const [orderBy, setOrderBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("lastUpdate");
     const [order, setOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("DESC");
     const [showingTickets, setShowingTickets] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
     const [intervalMs, setIntervalMs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5000);
     const getTicketsDatas = (currentPage, pageSize, orderBy, order) => {
         const offset = (currentPage - 1) * pageSize;
-        const sqlQuery = `
-      SELECT * FROM ticketDatas
-      ORDER BY ${orderBy} ${order}
-      LIMIT ${pageSize} OFFSET ${offset}
-      `;
+        let sqlQuery = "";
+        switch (currentActive) {
+            case "allTickets":
+                sqlQuery = `
+        SELECT * FROM ticketDatas 
+        ORDER BY ${orderBy} ${order} 
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+            case "notAssigned":
+                sqlQuery = `
+        SELECT * FROM ticketDatas 
+        WHERE assignedToPerson IS NULL
+        ORDER BY ${orderBy} ${order} 
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+            case "closed":
+                sqlQuery = `
+        SELECT * FROM ticketDatas 
+        WHERE status = 'Fechado'
+        ORDER BY ${orderBy} ${order} 
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+            case "n1":
+                sqlQuery = `
+        SELECT * FROM ticketDatas
+        WHERE assignedToGroup = 'Nivel 1'
+        ORDER BY ${orderBy} ${order}
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+            case "n2Sup":
+                sqlQuery = `
+        SELECT * FROM ticketDatas
+        WHERE assignedToGroup = 'Nível 2 - Suporte'
+        ORDER BY ${orderBy} ${order}
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+            case "n2Tech":
+                sqlQuery = `
+        SELECT * FROM ticketDatas
+        WHERE assignedToGroup = 'Nível 2 - Tecnologia'
+        ORDER BY ${orderBy} ${order}
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+            case "systems":
+                sqlQuery = `
+        SELECT * FROM ticketDatas
+        WHERE assignedToGroup = 'Sistemas'
+        ORDER BY ${orderBy} ${order}
+        LIMIT ${pageSize} OFFSET ${offset}
+        `;
+                break;
+        }
         return window.getGlpiDatas.getData(sqlQuery);
     };
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
@@ -38058,13 +38119,15 @@ const TicketElementsContextProvider = ({ children }) => {
             getTicketsDatas(currentPage, pageSize, orderBy, order)
                 .then((data) => {
                 setShowingTickets(data);
+                console.log(currentActive);
             });
         };
         fetchData();
         const intervalId = setInterval(fetchData, intervalMs);
         return () => clearInterval(intervalId);
-    }, [currentPage, pageSize, orderBy, order, intervalMs]);
+    }, [currentActive, currentPage, pageSize, orderBy, order, intervalMs]);
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TicketElementsContext.Provider, { value: {
+            setCurrentActive,
             currentPage,
             setCurrentPage,
             pageSize,
@@ -38122,6 +38185,7 @@ const Root = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     display: "inline-flex",
     width: "calc(100vw - 220px)",
     padding: "0 10px 10px 10px",
+    margin: "0 0 10px 0"
 });
 const Container = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     ..._styles_root__WEBPACK_IMPORTED_MODULE_0__.BGGrey,
@@ -38174,6 +38238,7 @@ const TableHeader = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     fontWeight: "bold",
     position: "sticky",
     top: "0",
+    border: `1px solid ${_styles_root__WEBPACK_IMPORTED_MODULE_0__.Colors.white}`,
 });
 const TableRow = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
     "&:nth-of-type(even)": {

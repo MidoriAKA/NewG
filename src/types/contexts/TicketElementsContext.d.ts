@@ -1,6 +1,7 @@
 import { ITicket, TTicketColumn } from "../tickets";
 
 interface ITicketElementsContext {
+  setCurrentActive: React.Dispatch<React.SetStateAction<Active>>;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
   pageSize: number;

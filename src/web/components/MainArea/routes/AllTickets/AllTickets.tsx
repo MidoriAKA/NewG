@@ -8,7 +8,6 @@ export const AllTickets = () => {
   const {
     showingTickets
   } = useTicketElementsContext();
-  console.dir(showingTickets);
   return (
     <div
       className="all-tickets__container"

@@ -2,14 +2,22 @@ import React, { Children, useState } from "react";
 
 import { useSideMenuContext } from "@src/web/contexts/SideMenuContext";
 import * as style from "@styles/components/SideMenu/SideMenu"
+import { useTicketElementsContext } from "@src/web/contexts/TicketElementsContext";
 
 export const SectionsView: React.FC<TAppProps> | any = (props: TSectionsViewProps) => {
 
   const {
-    currentActive,
     handleActive,
   } = useSideMenuContext();
+  const {
+    setCurrentActive
+  } = useTicketElementsContext();
   const sectionItems = props.sidemenuItems[1];
+
+  const tempHandleActive = (active: Active) => {
+    handleActive(active);
+    setCurrentActive(active);
+  }
 
   return (
     <>
@@ -24,7 +32,7 @@ export const SectionsView: React.FC<TAppProps> | any = (props: TSectionsViewProp
             className="side-menu__item"
             css={item.isActive ? style.ItemWrapperActive : style.ItemWrapper}
             data-is-active={item.isActive ? "true" : "false"}
-            onClick={() => handleActive(item.active as Active)}
+            onClick={() => tempHandleActive(item.active as Active)}
           >
             <div
               key={`item__icon-${item.active}-${index}`}

@@ -61,7 +61,7 @@ electron_1.app.whenReady().then(() => {
         titleBarStyle: "hidden",
         width: 1440,
         height: 1024,
-        backgroundColor: "#1e1e1e",
+        backgroundColor: "#1b1b1b",
         webPreferences: {
             // tsc or webpack が出力したプリロードスクリプトを読み込み
             preload: node_path_1.default.join(__dirname, "scripts/mainWindowPreload.js"),
