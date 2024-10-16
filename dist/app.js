@@ -37703,52 +37703,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/MainArea/MainArea */ "./src/web/styles/components/MainArea/MainArea.ts");
 /* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
-/* harmony import */ var _routes_index__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes/index */ "./src/web/components/MainArea/routes/index.ts");
+/* harmony import */ var _TicketsView_TicketsView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TicketsView/TicketsView */ "./src/web/components/MainArea/TicketsView/TicketsView.tsx");
 
 
 
 
 const MainAreaView = () => {
     const { currentActive } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__.useSideMenuContext)();
-    const renderContent = () => {
-        switch (currentActive) {
-            case "allTickets":
-                return (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.AllTickets, {});
-            case "notAssigned":
-                return (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.NotAssigned, {});
-            case "closed":
-                return (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket, {});
-            default:
-                return (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_routes_index__WEBPACK_IMPORTED_MODULE_2__.AllTickets, {});
-        }
-    };
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "main-area__root", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: renderContent() }) }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "main-area__root", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_TicketsView_TicketsView__WEBPACK_IMPORTED_MODULE_2__.TicketsView, {}) }) }));
 };
 
 
 /***/ }),
 
-/***/ "./src/web/components/MainArea/routes/AllTickets/AllTickets.tsx":
-/*!**********************************************************************!*\
-  !*** ./src/web/components/MainArea/routes/AllTickets/AllTickets.tsx ***!
-  \**********************************************************************/
+/***/ "./src/web/components/MainArea/TicketsView/TicketsView.tsx":
+/*!*****************************************************************!*\
+  !*** ./src/web/components/MainArea/TicketsView/TicketsView.tsx ***!
+  \*****************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AllTickets: () => (/* binding */ AllTickets)
+/* harmony export */   TicketsView: () => (/* binding */ TicketsView)
 /* harmony export */ });
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @src/web/contexts/TicketElementsContext */ "./src/web/contexts/TicketElementsContext.tsx");
 /* harmony import */ var _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/components/MainArea/Tables */ "./src/web/styles/components/MainArea/Tables.ts");
-/* harmony import */ var _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/tableHeaders */ "./src/web/components/MainArea/routes/config/tableHeaders.ts");
+/* harmony import */ var _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../config/tableHeaders */ "./src/web/components/MainArea/config/tableHeaders.ts");
 
 
 
 
-const AllTickets = () => {
+const TicketsView = () => {
     const { showingTickets } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "all-tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.map((header, index) => {
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.map((header, index) => {
                             return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", { children: header }, index));
                         }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: showingTickets.map((ticketObj, index) => {
                         const ticket = Object.entries(ticketObj);
@@ -37777,48 +37765,10 @@ const AllTickets = () => {
 
 /***/ }),
 
-/***/ "./src/web/components/MainArea/routes/ClosedTickets/ClosedTickets.tsx":
-/*!****************************************************************************!*\
-  !*** ./src/web/components/MainArea/routes/ClosedTickets/ClosedTickets.tsx ***!
-  \****************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   ClosedTicket: () => (/* binding */ ClosedTicket)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
-
-const ClosedTicket = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "Closed Tickets" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Summary" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Assignee" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Fix bug in login page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "John Doe" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Add new feature" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Jane Smith" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Update user profile page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Mike Johnson" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] })] })] })] }));
-};
-
-
-/***/ }),
-
-/***/ "./src/web/components/MainArea/routes/NotAssigned/NotAssigned.tsx":
-/*!************************************************************************!*\
-  !*** ./src/web/components/MainArea/routes/NotAssigned/NotAssigned.tsx ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   NotAssigned: () => (/* binding */ NotAssigned)
-/* harmony export */ });
-/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
-
-const NotAssigned = () => {
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("div", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("h1", { children: "Not Assigned" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("table", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("thead", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Ticket ID" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Summary" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Assignee" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("th", { children: "Status" })] }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tbody", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "1" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Fix bug in login page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "John Doe" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "2" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Add new feature" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Jane Smith" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxs)("tr", { children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "3" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Update user profile page" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Mike Johnson" }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_0__.jsx)("td", { children: "Closed" })] })] })] })] }));
-};
-
-
-/***/ }),
-
-/***/ "./src/web/components/MainArea/routes/config/tableHeaders.ts":
-/*!*******************************************************************!*\
-  !*** ./src/web/components/MainArea/routes/config/tableHeaders.ts ***!
-  \*******************************************************************/
+/***/ "./src/web/components/MainArea/config/tableHeaders.ts":
+/*!************************************************************!*\
+  !*** ./src/web/components/MainArea/config/tableHeaders.ts ***!
+  \************************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -37839,28 +37789,6 @@ const tableHeaders = [
     "Aprovação - Status de aprovação",
     "Tempo para solução + Progresso"
 ];
-
-
-/***/ }),
-
-/***/ "./src/web/components/MainArea/routes/index.ts":
-/*!*****************************************************!*\
-  !*** ./src/web/components/MainArea/routes/index.ts ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   AllTickets: () => (/* reexport safe */ _AllTickets_AllTickets__WEBPACK_IMPORTED_MODULE_0__.AllTickets),
-/* harmony export */   ClosedTicket: () => (/* reexport safe */ _ClosedTickets_ClosedTickets__WEBPACK_IMPORTED_MODULE_2__.ClosedTicket),
-/* harmony export */   NotAssigned: () => (/* reexport safe */ _NotAssigned_NotAssigned__WEBPACK_IMPORTED_MODULE_1__.NotAssigned)
-/* harmony export */ });
-/* harmony import */ var _AllTickets_AllTickets__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./AllTickets/AllTickets */ "./src/web/components/MainArea/routes/AllTickets/AllTickets.tsx");
-/* harmony import */ var _NotAssigned_NotAssigned__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NotAssigned/NotAssigned */ "./src/web/components/MainArea/routes/NotAssigned/NotAssigned.tsx");
-/* harmony import */ var _ClosedTickets_ClosedTickets__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ClosedTickets/ClosedTickets */ "./src/web/components/MainArea/routes/ClosedTickets/ClosedTickets.tsx");
-
-
-
 
 
 /***/ }),
@@ -38066,7 +37994,7 @@ const TicketElementsContextProvider = ({ children }) => {
             case "notAssigned":
                 sqlQuery = `
         SELECT * FROM ticketDatas 
-        WHERE assignedToPerson IS NULL
+        WHERE assignedToPerson = ''
         ORDER BY ${orderBy} ${order} 
         LIMIT ${pageSize} OFFSET ${offset}
         `;

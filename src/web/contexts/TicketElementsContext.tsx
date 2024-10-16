@@ -38,7 +38,7 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
       case "notAssigned":
         sqlQuery = `
         SELECT * FROM ticketDatas 
-        WHERE assignedToPerson IS NULL
+        WHERE assignedToPerson = ''
         ORDER BY ${orderBy} ${order} 
         LIMIT ${pageSize} OFFSET ${offset}
         `;

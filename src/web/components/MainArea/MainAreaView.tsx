@@ -1,26 +1,14 @@
 import * as style from "@styles/components/MainArea/MainArea";
 
 import { useSideMenuContext } from "@src/web/contexts/SideMenuContext";
+import { TicketsView } from "./TicketsView/TicketsView";
 
-import { AllTickets, NotAssigned, ClosedTicket } from "./routes/index";
 
 export const MainAreaView = () => {
   const {
     currentActive
   } = useSideMenuContext();
 
-  const renderContent = () => {
-    switch (currentActive) {
-      case "allTickets":
-        return <AllTickets />;
-      case "notAssigned":
-        return <NotAssigned />;
-      case "closed":
-        return <ClosedTicket />;
-      default:
-        return <AllTickets />;
-    }
-  }
 
   return (
     <div
@@ -30,7 +18,7 @@ export const MainAreaView = () => {
       <div
         css={style.Container}
       >
-        {renderContent()}
+        <TicketsView />
       </div>
     </div>
   );

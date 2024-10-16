@@ -3,14 +3,14 @@ import * as style from "@styles/components/MainArea/Tables";
 import { tableHeaders } from "../config/tableHeaders";
 import { ITicket } from "@src/types/tickets";
 
-export const AllTickets = () => {
+export const TicketsView = () => {
 
   const {
     showingTickets
   } = useTicketElementsContext();
   return (
     <div
-      className="all-tickets__container"
+      className="tickets__container"
       css={style.Container}
     >
       <table
