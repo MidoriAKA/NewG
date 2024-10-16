@@ -28,3 +28,5 @@ export interface ITicket {
   approvalStatus: string | null,
   timeToSolution: string | null
 }
+
+export type TTicketColumn = keyof ITicket;

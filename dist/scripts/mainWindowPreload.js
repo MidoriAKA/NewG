@@ -17,4 +17,7 @@ electron_1.ipcRenderer.on("scrappedGlpiDatas:receiveData", (event, data) => {
 });
 electron_1.contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
     receiveData: (callback) => electron_1.ipcRenderer.on("scrappedGlpiDatas:receiveData", (event, data) => callback(data))
+}); //Old code
+electron_1.contextBridge.exposeInMainWorld("getGlpiDatas", {
+    getData: (sqlQuery) => electron_1.ipcRenderer.invoke("getGlpiDatas", sqlQuery),
 });

@@ -37747,10 +37747,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const AllTickets = () => {
-    const { ticketsDatas } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
+    const { showingTickets } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
+    console.dir(showingTickets);
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "all-tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.map((header, index) => {
                             return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", { children: header }, index));
-                        }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: ticketsDatas.map((ticket, index) => {
+                        }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: showingTickets.map((ticketObj, index) => {
+                        const ticket = Object.entries(ticketObj);
                         const tdElements = [];
                         const ticketLength = ticket.length;
                         for (let i = 0; i < ticketLength; i++) {
@@ -38031,18 +38033,48 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-const TicketElementsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
+const TicketElementsContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)({});
 const useTicketElementsContext = () => {
     return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(TicketElementsContext);
 };
 const TicketElementsContextProvider = ({ children }) => {
-    const [ticketsDatas, setTicketsDatas] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
-    window.scrappedGlpiDatas.receiveData((data) => {
-        setTicketsDatas(data);
-    });
-    const onlyNotAssignedTickets = ticketsDatas.filter((ticket) => ticket[7][1] === "");
+    const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+    const [pageSize, setPageSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(10);
+    const [orderBy, setOrderBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("lastUpdate");
+    const [order, setOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("DESC");
+    const [showingTickets, setShowingTickets] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
+    const [intervalMs, setIntervalMs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5000);
+    const getTicketsDatas = (currentPage, pageSize, orderBy, order) => {
+        const offset = (currentPage - 1) * pageSize;
+        const sqlQuery = `
+      SELECT * FROM ticketDatas
+      ORDER BY ${orderBy} ${order}
+      LIMIT ${pageSize} OFFSET ${offset}
+      `;
+        return window.getGlpiDatas.getData(sqlQuery);
+    };
+    (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+        const fetchData = () => {
+            getTicketsDatas(currentPage, pageSize, orderBy, order)
+                .then((data) => {
+                setShowingTickets(data);
+            });
+        };
+        fetchData();
+        const intervalId = setInterval(fetchData, intervalMs);
+        return () => clearInterval(intervalId);
+    }, [currentPage, pageSize, orderBy, order, intervalMs]);
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TicketElementsContext.Provider, { value: {
-            ticketsDatas
+            currentPage,
+            setCurrentPage,
+            pageSize,
+            setPageSize,
+            orderBy,
+            setOrderBy,
+            order,
+            setOrder,
+            showingTickets,
+            setShowingTickets
         }, children: children }));
 };
 

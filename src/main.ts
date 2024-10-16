@@ -265,12 +265,6 @@ app.whenReady().then(() => {
           insertOrUpdateTicket(data);
         });
       }
-      const sendTicketsDatas = async (formattedJsonPath: string) => {
-        console.log("sending tickets datas");
-        const ticketsDatas = JSON.parse(fs.readFileSync(formattedJsonPath, "utf8"));
-        mainWindow.webContents.send("scrappedGlpiDatas:receiveData", ticketsDatas);
-        console.log("sent");
-      }
       
       const requestURLQuery = [
         ["http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket"],
@@ -310,8 +304,19 @@ app.whenReady().then(() => {
       await convertCsvToJson(csvPath, jsonPath);
       await formatJson(jsonPath, formattedJsonPath);
       await saveJsonToDb(formattedJsonPath);
-      await sendTicketsDatas(formattedJsonPath);
     });
+
+  //DBからデータを取得してレンダラープロセスに送信
+  ipcMain.handle("getGlpiDatas", async (event, sqlQuery) => {
+    return new Promise(res => {
+      db.all(sqlQuery, (err: any, rows: any) => {
+        if (err) {
+          console.error(err.message);
+        }
+        res(rows);
+      });
+    });
+  });
 
   //タイトルバー関連のIPC通信
     ipcMain.on("titlebarEvent", (event, arg) => {

@@ -1,12 +1,14 @@
 import { useTicketElementsContext } from "@src/web/contexts/TicketElementsContext";
 import * as style from "@styles/components/MainArea/Tables";
 import { tableHeaders } from "../config/tableHeaders";
+import { ITicket } from "@src/types/tickets";
 
 export const AllTickets = () => {
 
   const {
-    ticketsDatas
+    showingTickets
   } = useTicketElementsContext();
+  console.dir(showingTickets);
   return (
     <div
       className="all-tickets__container"
@@ -34,7 +36,9 @@ export const AllTickets = () => {
         </thead>
         <tbody>
           {
-            ticketsDatas.map((ticket: any, index: number) => {
+            showingTickets.map((ticketObj: ITicket, index: number) => {
+              const ticket = Object.entries(ticketObj);
+
               const tdElements = [];
               const ticketLength = ticket.length;
               for (let i = 0; i < ticketLength; i++) {
@@ -84,29 +88,6 @@ export const AllTickets = () => {
                 </tr>
               );
             })
-            // ticketsDatas.forEach((ticket: any, index: number) => {
-            //   const tdElements = [];
-            //   for (let i = 0; i === 12; i++) {
-            //     console.log(i);
-            //     tdElements.push(
-            //       <td
-            //         key={i}
-            //         css={style.TableCell}
-            //       >
-            //         {ticket[i][1]}
-            //       </td>
-            //     );
-            //   }
-            //   tdElements.pop();
-            //   return (
-            //     <tr
-            //       key={index}
-            //       css={style.TableRow}
-            //     >
-            //       {tdElements}
-            //     </tr>
-            //   );
-            // })
           }
         </tbody>
       </table>
