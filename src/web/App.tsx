@@ -11,7 +11,6 @@ export const App = () => {
     return (
         <>
             <SideMenuContextProvider>
-
                 <TicketElementsContextProvider>
                     <TitleBarView />
                     <div
@@ -20,7 +19,6 @@ export const App = () => {
                         <SidemenuView />
                         <MainAreaView />
                     </div>
-
                 </TicketElementsContextProvider>
             </SideMenuContextProvider>
         </>

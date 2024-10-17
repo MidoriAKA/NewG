@@ -1,0 +1,97 @@
+import { css, SerializedStyles } from "@emotion/react";
+import * as theme from "@styles/root";
+
+export const Root: SerializedStyles = css({
+  ...theme.BGBlack,
+  position: "sticky",
+  display: "flex",
+  flexDirection: "row",
+  justifyContent: "flex-end",
+  alignItems: "center",
+  width: "-webkit-fill-available",
+  height: "40px",
+  padding: "10px",
+  borderRadius: "10px",
+  ".pagination": {
+    position: "absolute",
+    right: "50%",
+    transform: "translateX(50%)",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    width: "fit",
+    padding: "10px",
+    backgroundColor: theme.Colors.black,
+    borderRadius: "10px",
+  },
+  "li": {
+    listStyleType: "none",
+  },
+  ".page": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "25px",
+    width: "25px",
+    padding: "5px",
+    margin: "0 5px",
+    color: theme.Colors.white,
+    fontSize: "16px",
+    backgroundColor: theme.Colors.grey,
+    borderRadius: "10px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: theme.Colors.white,
+      color: theme.Colors.black,
+    },
+  },
+  ".active": {
+    padding: "5px",
+    margin: "0 5px",
+    color: theme.Colors.black,
+    backgroundColor: theme.Colors.white,
+    borderRadius: "10px",
+  },
+  ".previous, .next": {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "20px",
+    width: "20px",
+    fontWeight: "bold",
+    padding: "5px",
+    margin: "0 5px",
+    color: theme.Colors.white,
+    backgroundColor: theme.Colors.grey,
+    borderRadius: "10px",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: theme.Colors.white,
+      color: theme.Colors.black,
+    },
+  },
+})
+
+export const DisplayCount: SerializedStyles = css({
+  ...theme.BGBlack,
+  maxHeight: "30px",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  padding: "5px",
+  margin: "0 5px",
+  fontSize: "16px",
+  borderRadius: "10px",
+})
+
+export const DisplayCountSelect: SerializedStyles = css({
+    ...theme.BGBlack,
+    height: "30px",
+    width: "50px",
+    margin: "0 5px",
+    borderRadius: "10px",
+    border: `4px solid ${theme.Colors.grey}`,
+    fontSize: "16px",
+    textAlign: "center",
+    textAlignLast: "center",
+  })

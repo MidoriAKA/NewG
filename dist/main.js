@@ -12,6 +12,8 @@ const fs_1 = __importDefault(require("fs"));
 const csv_parse_1 = require("csv-parse");
 const electron_dl_1 = require("electron-dl");
 const promises_1 = require("node:stream/promises");
+const sqlite3 = require("sqlite3");
+const db = new sqlite3.Database("glpiDatas.db");
 // 開発時には electron アプリをホットリロードする
 if (process.env.NODE_ENV === "development") {
     (0, electron_reload_1.default)(__dirname, {
@@ -22,6 +24,22 @@ if (process.env.NODE_ENV === "development") {
         hardResetMethod: "exit",
     });
 }
+db.serialize(() => {
+    db.run(`CREATE TABLE IF NOT EXISTS ticketDatas (
+    ID INTEGER PRIMARY KEY,
+    title TEXT,
+    status TEXT,
+    lastUpdate INTEGER,
+    openDate INTEGER,
+    priority TEXT,
+    requester TEXT,
+    assignedToPerson TEXT,
+    assignedToGroup TEXT,
+    category TEXT,
+    approvalStatus TEXT,
+    timeToSolution TEXT)`);
+    db.run(`CREATE TABLE IF NOT EXISTS info (datasLength TEXT)`);
+});
 const loginStore = new electron_store_1.default({
     encryptionKey: "loginData",
     cwd: electron_1.app.getPath("userData"),
@@ -43,7 +61,7 @@ electron_1.app.whenReady().then(() => {
         titleBarStyle: "hidden",
         width: 1440,
         height: 1024,
-        backgroundColor: "#1e1e1e",
+        backgroundColor: "#1b1b1b",
         webPreferences: {
             // tsc or webpack が出力したプリロードスクリプトを読み込み
             preload: node_path_1.default.join(__dirname, "scripts/mainWindowPreload.js"),
@@ -109,6 +127,16 @@ electron_1.app.whenReady().then(() => {
         const csvPath = electron_1.app.getPath("userData") + "/downloaded.csv";
         const jsonPath = electron_1.app.getPath("userData") + "/rawTicketsDatas.json";
         const formattedJsonPath = electron_1.app.getPath("userData") + "/formattedTicketsDatas.json";
+        const downloadCsv = async (url, saveTo) => {
+            const saveAs = saveTo.split("/").pop();
+            console.log("downloading");
+            await (0, electron_dl_1.download)(mainWindow, url, {
+                saveAs: false,
+                directory: electron_1.app.getPath("userData"),
+                filename: saveAs,
+            });
+            console.log("downloaded");
+        };
         const convertCsvToJson = async (csvPath, jsonPath) => {
             console.log("start");
             let csvData = fs_1.default.readFileSync(csvPath, "utf8");
@@ -145,30 +173,80 @@ electron_1.app.whenReady().then(() => {
             const rawData = JSON.parse(fs_1.default.readFileSync(jsonPath, "utf8"));
             let formattedJsonData = [];
             // IDの空白を削除
-            rawData.forEach((data, index) => {
+            rawData.forEach((data) => {
                 data.ID = data.ID.replace(/\s/g, '');
-                formattedJsonData[index] = Object.entries(data);
+                formattedJsonData.push({
+                    ID: data.ID,
+                    title: data["Título"],
+                    status: data["Status"],
+                    lastUpdate: data["Última atualização"],
+                    openDate: data["Data de abertura"],
+                    priority: data["Prioridade"],
+                    requester: data["Requerente - Requerente"],
+                    assignedToPerson: data["Atribuído para - Técnico"],
+                    assignedToGroup: data["Atribuído para - Grupo técnico"],
+                    category: data["Categoria"],
+                    approvalStatus: data["Aprovação - Status de aprovação"],
+                    timeToSolution: data["Tempo para solução + Progresso"],
+                });
             });
-            // 各配列の最後の要素を削除
+            // IDと日付の型を数字に変換し、日付の書式をYYYYMMDDHHmmss形式にする
             formattedJsonData.forEach((element) => {
-                element.pop();
-            });
-            // 日付の文字列を数字に変換しYYYYMMDDHHmmss形式にする
-            formattedJsonData.forEach((element) => {
-                element[3][1] = element[3][1].replace(/[-\s:]/g, '');
-                element[3][1] = element[3][1].replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
-                element[3][1] = Number(element[3][1]);
-                element[4][1] = element[4][1].replace(/[-\s:]/g, '');
-                element[4][1] = element[4][1].replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
-                element[4][1] = Number(element[4][1]);
+                if (typeof element.ID === "string") {
+                    element.ID = Number(element.ID);
+                }
+                if (typeof element.lastUpdate === "string") {
+                    element.lastUpdate = element.lastUpdate.replace(/[-\s:]/g, '');
+                    element.lastUpdate = element.lastUpdate.replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
+                    element.lastUpdate = Number(element.lastUpdate);
+                }
+                if (typeof element.openDate === "string") {
+                    element.openDate = element.openDate.replace(/[-\s:]/g, '');
+                    element.openDate = element.openDate.replace(/(\d{2})(\d{2})(\d{4})(\d{2})(\d{2})/, '$3$2$1$4$5');
+                    element.openDate = Number(element.openDate);
+                }
             });
             fs_1.default.writeFileSync(saveTo, JSON.stringify(formattedJsonData, null, 4), "utf8");
         };
-        const sendTicketsDatas = async (formattedJsonPath) => {
-            console.log("sending tickets datas");
-            const ticketsDatas = JSON.parse(fs_1.default.readFileSync(formattedJsonPath, "utf8"));
-            mainWindow.webContents.send("scrappedGlpiDatas:receiveData", ticketsDatas);
-            console.log("sent");
+        const insertOrUpdateTicket = async (datas) => {
+            const query = `INSERT OR REPLACE INTO ticketDatas (
+          ID,
+          title,
+          status,
+          lastUpdate,
+          openDate,
+          priority,
+          requester,
+          assignedToPerson,
+          assignedToGroup,
+          category,
+          approvalStatus,
+          timeToSolution
+          ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)`;
+            db.run(query, [
+                datas.ID,
+                datas.title,
+                datas.status,
+                datas.lastUpdate,
+                datas.openDate,
+                datas.priority,
+                datas.requester,
+                datas.assignedToPerson,
+                datas.assignedToGroup,
+                datas.category,
+                datas.approvalStatus,
+                datas.timeToSolution
+            ], (err) => {
+                if (err) {
+                    return console.error(err.message);
+                }
+            });
+        };
+        const saveJsonToDb = async (formattedJsonPath) => {
+            const rawDatas = JSON.parse(fs_1.default.readFileSync(formattedJsonPath, "utf8"));
+            rawDatas.forEach((data) => {
+                insertOrUpdateTicket(data);
+            });
         };
         const requestURLQuery = [
             ["http://atendimentosti.ad.daer.rs.gov.br/front/report.dynamic.php?item_type=Ticket"],
@@ -180,21 +258,47 @@ electron_1.app.whenReady().then(() => {
             ["criteria%5B1%5D%5Blink%5D=AND"],
             ["criteria%5B1%5D%5Bfield%5D=15"],
             ["criteria%5B1%5D%5Bsearchtype%5D=morethan"],
-            ["criteria%5B1%5D%5Bvalue%5D=-1YEAR"],
+            ["criteria%5B1%5D%5Bvalue%5D=-6MONTH"],
             ["display_type=-3"],
             ["export.x=11"],
             ["export.y=9"],
             ["_glpi_csrf_token="]
         ];
         const requestURL = requestURLQuery.join("&") + arg;
-        await (0, electron_dl_1.download)(mainWindow, requestURL, {
-            directory: electron_1.app.getPath("userData"),
-            filename: "downloaded.csv",
-            saveAs: false,
+        db.get("SELECT datasLength FROM info", async (err, row) => {
+            if (row === undefined) {
+                console.log("execute 1YEAR");
+                requestURLQuery[9] = ["criteria%5B1%5D%5Bvalue%5D=-1YEAR"];
+                const requestURL1Year = requestURLQuery.join("&") + arg;
+                await downloadCsv(requestURL1Year, csvPath);
+                db.run("INSERT INTO info (datasLength) VALUES (?)", ["1YEAR"], (err) => {
+                    if (err) {
+                        return console.error(err.message);
+                    }
+                });
+            }
+            else {
+                console.log("execute 6MONTH");
+                await downloadCsv(requestURL, csvPath);
+            }
         });
         await convertCsvToJson(csvPath, jsonPath);
         await formatJson(jsonPath, formattedJsonPath);
-        await sendTicketsDatas(formattedJsonPath);
+        await saveJsonToDb(formattedJsonPath);
+    });
+    //DBからデータを取得してレンダラープロセスに送信
+    electron_1.ipcMain.handle("getGlpiDatas", async (event, sqlQuery) => {
+        return new Promise(res => {
+            db.all(sqlQuery, (err, rows) => {
+                if (err) {
+                    console.error(err.message);
+                    res([{ ID: 0, title: "error", status: "error", lastUpdate: 0, openDate: 0, priority: "error", requester: "error", assignedToPerson: "error", assignedToGroup: "error", category: "error", approvalStatus: "error", timeToSolution: "error" }]);
+                }
+                else {
+                    res(rows);
+                }
+            });
+        });
     });
     //タイトルバー関連のIPC通信
     electron_1.ipcMain.on("titlebarEvent", (event, arg) => {

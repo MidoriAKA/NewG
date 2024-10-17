@@ -22,4 +22,9 @@ contextBridge.exposeInMainWorld("scrappedGlpiDatas", {
     ipcRenderer.on(
       "scrappedGlpiDatas:receiveData", (event, data: Array<any>) => 
       callback(data))
+}); //Old code
+
+contextBridge.exposeInMainWorld("getGlpiDatas", {
+  getData: (sqlQuery: string) => ipcRenderer.invoke("getGlpiDatas", sqlQuery),
+  
 });

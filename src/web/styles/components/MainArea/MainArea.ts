@@ -6,6 +6,7 @@ export const Root: SerializedStyles = css({
   display: "inline-flex",
   width: "calc(100vw - 220px)",
   padding: "0 10px 10px 10px",
+  margin: "0 0 10px 0"
 });
 export const Container: SerializedStyles = css({
   ...theme.BGGrey,
