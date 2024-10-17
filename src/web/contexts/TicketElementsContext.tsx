@@ -12,9 +12,12 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
 
   const [currentActive, setCurrentActive] = useState<Active>("allTickets");
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const [pageSize, setPageSize] = useState<number>(6);
+  const [displayCount, setDisplayCount] = useState<number>(6);
+  const [totalTicketsCount, setTotalTicketsCount] = useState<number>(0);
+  const [offset, setOffset] = useState<number>(0);
   const [orderBy, setOrderBy] = useState<TTicketColumn>("lastUpdate");
   const [order, setOrder] = useState<string>("DESC");
+  const [tickets, setTickets] = useState<ITicket[]>([]);
   const [showingTickets, setShowingTickets] = useState<ITicket[]>([]);
   const [intervalMs, setIntervalMs] = useState<number>(5000);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -26,9 +29,11 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
           handleSearch(searchQuery)
             .then((data) => {
               if (data[0].ID === 0) {
-                setShowingTickets([]);
+                setTickets([]);
               } else {
-                setShowingTickets(data);
+                setTickets(data);
+                setTotalTicketsCount(data.length);
+                setShowingTickets(data.slice(offset, offset + displayCount));
               }
             });
           break;
@@ -36,9 +41,14 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
           getTicketsDatas()
             .then((data) => {
               if (data[0].ID === 0) {
-                setShowingTickets([]);
+                setTickets([]);
               } else {
-                setShowingTickets(data);
+                setTickets(data);
+                setTotalTicketsCount(data.length);
+                setShowingTickets(data.slice(offset, offset + displayCount));
+                console.log("current page: ", currentPage);
+                console.log("display count: ", displayCount);
+                console.log("offset: ", offset);
               }
             });
           break;
@@ -53,7 +63,7 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
   }, [
     currentActive,
     currentPage,
-    pageSize,
+    displayCount,
     orderBy,
     order,
     searchQuery,
@@ -63,7 +73,7 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
     "SELECT * FROM ticketDatas",
     "ORDER BY",
     `${orderBy} ${order}`,
-    `LIMIT ${pageSize} OFFSET ${(currentPage - 1) * pageSize}`,
+    // `LIMIT ${displayCount} OFFSET ${(currentPage - 1) * displayCount}`,
   ];
   const getTicketsDatas = () => {
     let sqlQuery = "";
@@ -121,7 +131,6 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
             assignedToPerson LIKE '%${searchQuery}%' OR
             assignedToGroup LIKE '%${searchQuery}%'
           ORDER BY ${orderBy} ${order}
-          LIMIT ${pageSize} OFFSET ${(currentPage - 1) * pageSize}
         `;
         break;
       case "notAssigned":
@@ -159,8 +168,11 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
         setCurrentActive,
         currentPage,
         setCurrentPage,
-        pageSize,
-        setPageSize,
+        displayCount,
+        setDisplayCount,
+        totalTicketsCount,
+        offset,
+        setOffset,
         orderBy,
         setOrderBy,
         order,

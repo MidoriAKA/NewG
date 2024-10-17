@@ -3,16 +3,6 @@ import * as style from "@styles/components/MainArea/Filter";
 
 export const FilterView = () => {
   const {
-    setCurrentActive,
-    currentPage,
-    setCurrentPage,
-    pageSize,
-    setPageSize,
-    orderBy,
-    setOrderBy,
-    order,
-    setOrder,
-    showingTickets,
     setSearchQuery
   } = useTicketElementsContext();
 

@@ -2,6 +2,7 @@ import * as style from "@styles/components/MainArea/MainArea";
 
 import { TicketsView } from "./TicketsView/TicketsView";
 import { FilterView } from "./FilterView/FilterView";
+import { PaginationView } from "./PaginationView/PaginationView";
 
 
 export const MainAreaView = () => {
@@ -16,6 +17,7 @@ export const MainAreaView = () => {
       >
         <FilterView />
         <TicketsView />
+        <PaginationView />
       </div>
     </div>
   );

@@ -5,6 +5,7 @@ export const Container: SerializedStyles = css({
   width: "100%",
   height: "100%",
   overflow: "auto",
+  marginBottom: "10px",
   "&::-webkit-scrollbar": {
     display: "none",
   },

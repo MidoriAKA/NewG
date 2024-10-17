@@ -4,8 +4,11 @@ interface ITicketElementsContext {
   setCurrentActive: React.Dispatch<React.SetStateAction<Active>>;
   currentPage: number;
   setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
-  pageSize: number;
-  setPageSize: React.Dispatch<React.SetStateAction<number>>;
+  displayCount: number;
+  setDisplayCount: React.Dispatch<React.SetStateAction<number>>;
+  totalTicketsCount: number;
+  offset: number;
+  setOffset: React.Dispatch<React.SetStateAction<number>>;
   orderBy: TTicketColumn;
   setOrderBy: React.Dispatch<React.SetStateAction<TTicketColumn>>;
   order: string;
