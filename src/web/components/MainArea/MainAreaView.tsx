@@ -1,14 +1,10 @@
 import * as style from "@styles/components/MainArea/MainArea";
 
-import { useSideMenuContext } from "@src/web/contexts/SideMenuContext";
 import { TicketsView } from "./TicketsView/TicketsView";
+import { FilterView } from "./FilterView/FilterView";
 
 
 export const MainAreaView = () => {
-  const {
-    currentActive
-  } = useSideMenuContext();
-
 
   return (
     <div
@@ -18,6 +14,7 @@ export const MainAreaView = () => {
       <div
         css={style.Container}
       >
+        <FilterView />
         <TicketsView />
       </div>
     </div>

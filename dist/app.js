@@ -37690,6 +37690,30 @@ const App = () => {
 
 /***/ }),
 
+/***/ "./src/web/components/MainArea/FilterView/FilterView.tsx":
+/*!***************************************************************!*\
+  !*** ./src/web/components/MainArea/FilterView/FilterView.tsx ***!
+  \***************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   FilterView: () => (/* binding */ FilterView)
+/* harmony export */ });
+/* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
+/* harmony import */ var _src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @src/web/contexts/TicketElementsContext */ "./src/web/contexts/TicketElementsContext.tsx");
+/* harmony import */ var _styles_components_MainArea_Filter__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @styles/components/MainArea/Filter */ "./src/web/styles/components/MainArea/Filter.ts");
+
+
+
+const FilterView = () => {
+    const { setCurrentActive, currentPage, setCurrentPage, pageSize, setPageSize, orderBy, setOrderBy, order, setOrder, showingTickets, setSearchQuery } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", { className: "filter-view__root", css: _styles_components_MainArea_Filter__WEBPACK_IMPORTED_MODULE_1__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("input", { className: "filter-view__search", css: _styles_components_MainArea_Filter__WEBPACK_IMPORTED_MODULE_1__.Search, type: "text", placeholder: "\uD83D\uDD0E Pesquisar", onChange: (e) => setSearchQuery(e.target.value) }) }) }));
+};
+
+
+/***/ }),
+
 /***/ "./src/web/components/MainArea/MainAreaView.tsx":
 /*!******************************************************!*\
   !*** ./src/web/components/MainArea/MainAreaView.tsx ***!
@@ -37702,15 +37726,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @emotion/react/jsx-runtime */ "./node_modules/@emotion/react/jsx-runtime/dist/emotion-react-jsx-runtime.browser.development.esm.js");
 /* harmony import */ var _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/components/MainArea/MainArea */ "./src/web/styles/components/MainArea/MainArea.ts");
-/* harmony import */ var _src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @src/web/contexts/SideMenuContext */ "./src/web/contexts/SideMenuContext.tsx");
-/* harmony import */ var _TicketsView_TicketsView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./TicketsView/TicketsView */ "./src/web/components/MainArea/TicketsView/TicketsView.tsx");
+/* harmony import */ var _TicketsView_TicketsView__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./TicketsView/TicketsView */ "./src/web/components/MainArea/TicketsView/TicketsView.tsx");
+/* harmony import */ var _FilterView_FilterView__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./FilterView/FilterView */ "./src/web/components/MainArea/FilterView/FilterView.tsx");
 
 
 
 
 const MainAreaView = () => {
-    const { currentActive } = (0,_src_web_contexts_SideMenuContext__WEBPACK_IMPORTED_MODULE_1__.useSideMenuContext)();
-    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "main-area__root", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_TicketsView_TicketsView__WEBPACK_IMPORTED_MODULE_2__.TicketsView, {}) }) }));
+    return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "main-area__root", css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Root, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", { css: _styles_components_MainArea_MainArea__WEBPACK_IMPORTED_MODULE_0__.Container, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_FilterView_FilterView__WEBPACK_IMPORTED_MODULE_2__.FilterView, {}), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_TicketsView_TicketsView__WEBPACK_IMPORTED_MODULE_1__.TicketsView, {})] }) }));
 };
 
 
@@ -37975,85 +37998,140 @@ const TicketElementsContextProvider = ({ children }) => {
     const [currentActive, setCurrentActive] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("allTickets");
     const [currentPage, setCurrentPage] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
     const [pageSize, setPageSize] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(6);
-    const [filter, setFilter] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("assignedToGroup");
     const [orderBy, setOrderBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("lastUpdate");
     const [order, setOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("DESC");
     const [showingTickets, setShowingTickets] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
     const [intervalMs, setIntervalMs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5000);
-    const getTicketsDatas = (currentPage, pageSize, orderBy, order) => {
-        const offset = (currentPage - 1) * pageSize;
-        let sqlQuery = "";
-        switch (currentActive) {
-            case "allTickets":
-                sqlQuery = `
-        SELECT * FROM ticketDatas 
-        ORDER BY ${orderBy} ${order} 
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-            case "notAssigned":
-                sqlQuery = `
-        SELECT * FROM ticketDatas 
-        WHERE assignedToPerson = ''
-        ORDER BY ${orderBy} ${order} 
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-            case "closed":
-                sqlQuery = `
-        SELECT * FROM ticketDatas 
-        WHERE status = 'Fechado'
-        ORDER BY ${orderBy} ${order} 
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-            case "n1":
-                sqlQuery = `
-        SELECT * FROM ticketDatas
-        WHERE assignedToGroup = 'Nivel 1'
-        ORDER BY ${orderBy} ${order}
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-            case "n2Sup":
-                sqlQuery = `
-        SELECT * FROM ticketDatas
-        WHERE assignedToGroup = 'Nível 2 - Suporte'
-        ORDER BY ${orderBy} ${order}
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-            case "n2Tech":
-                sqlQuery = `
-        SELECT * FROM ticketDatas
-        WHERE assignedToGroup = 'Nível 2 - Tecnologia'
-        ORDER BY ${orderBy} ${order}
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-            case "systems":
-                sqlQuery = `
-        SELECT * FROM ticketDatas
-        WHERE assignedToGroup = 'Sistemas'
-        ORDER BY ${orderBy} ${order}
-        LIMIT ${pageSize} OFFSET ${offset}
-        `;
-                break;
-        }
-        return window.getGlpiDatas.getData(sqlQuery);
-    };
+    const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
         const fetchData = () => {
-            getTicketsDatas(currentPage, pageSize, orderBy, order)
-                .then((data) => {
-                setShowingTickets(data);
-                console.log(currentActive);
-            });
+            switch (searchQuery !== "") {
+                case true:
+                    handleSearch(searchQuery)
+                        .then((data) => {
+                        if (data[0].ID === 0) {
+                            setShowingTickets([]);
+                        }
+                        else {
+                            setShowingTickets(data);
+                        }
+                    });
+                    break;
+                default:
+                    getTicketsDatas()
+                        .then((data) => {
+                        if (data[0].ID === 0) {
+                            setShowingTickets([]);
+                        }
+                        else {
+                            setShowingTickets(data);
+                        }
+                    });
+                    break;
+            }
         };
         fetchData();
         const intervalId = setInterval(fetchData, intervalMs);
         return () => clearInterval(intervalId);
-    }, [currentActive, currentPage, pageSize, orderBy, order, intervalMs]);
+    }, [
+        currentActive,
+        currentPage,
+        pageSize,
+        orderBy,
+        order,
+        searchQuery,
+    ]);
+    const queryTemplate = [
+        "SELECT * FROM ticketDatas",
+        "ORDER BY",
+        `${orderBy} ${order}`,
+        `LIMIT ${pageSize} OFFSET ${(currentPage - 1) * pageSize}`,
+    ];
+    const getTicketsDatas = () => {
+        let sqlQuery = "";
+        switch (currentActive) {
+            case "allTickets":
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "notAssigned":
+                queryTemplate.splice(1, 0, "WHERE assignedToPerson = ''");
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "closed":
+                queryTemplate.splice(1, 0, "WHERE status = 'Fechado'");
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "n1":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nivel 1'");
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "n2Sup":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Suporte'");
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "n2Tech":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Tecnologia'");
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "systems":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Sistemas'");
+                sqlQuery = queryTemplate.join(" ");
+                break;
+        }
+        return window.getGlpiDatas.getData(sqlQuery);
+    };
+    const handleSearch = (searchQuery) => {
+        let sqlQuery = "";
+        const serachTemplate = `
+      AND (
+            ID LIKE '%${searchQuery}%' OR
+            title LIKE '%${searchQuery}%' OR
+            requester LIKE '%${searchQuery}%' OR
+            assignedToPerson LIKE '%${searchQuery}%' OR
+            assignedToGroup LIKE '%${searchQuery}%'
+          )
+    `;
+        switch (currentActive) {
+            case "allTickets":
+                sqlQuery = `
+          SELECT * FROM ticketDatas
+          WHERE
+            ID LIKE '%${searchQuery}%' OR
+            title LIKE '%${searchQuery}%' OR
+            requester LIKE '%${searchQuery}%' OR
+            assignedToPerson LIKE '%${searchQuery}%' OR
+            assignedToGroup LIKE '%${searchQuery}%'
+          ORDER BY ${orderBy} ${order}
+          LIMIT ${pageSize} OFFSET ${(currentPage - 1) * pageSize}
+        `;
+                break;
+            case "notAssigned":
+                queryTemplate.splice(1, 0, "WHERE assignedToPerson = ''" + serachTemplate);
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "closed":
+                queryTemplate.splice(1, 0, "WHERE status = 'Fechado'" + serachTemplate);
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "n1":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nivel 1'" + serachTemplate);
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "n2Sup":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Suporte'" + serachTemplate);
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "n2Tech":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Tecnologia'" + serachTemplate);
+                sqlQuery = queryTemplate.join(" ");
+                break;
+            case "systems":
+                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Sistemas'" + serachTemplate);
+                sqlQuery = queryTemplate.join(" ");
+                break;
+        }
+        return window.getGlpiDatas.getData(sqlQuery);
+    };
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)(TicketElementsContext.Provider, { value: {
             setCurrentActive,
             currentPage,
@@ -38065,7 +38143,8 @@ const TicketElementsContextProvider = ({ children }) => {
             order,
             setOrder,
             showingTickets,
-            setShowingTickets
+            setShowingTickets,
+            setSearchQuery,
         }, children: children }));
 };
 
@@ -38088,6 +38167,43 @@ const root = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_0__.css)({
     display: "flex",
     height: "calc(100vh - 41px)",
     width: "100vw"
+});
+
+
+/***/ }),
+
+/***/ "./src/web/styles/components/MainArea/Filter.ts":
+/*!******************************************************!*\
+  !*** ./src/web/styles/components/MainArea/Filter.ts ***!
+  \******************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Root: () => (/* binding */ Root),
+/* harmony export */   Search: () => (/* binding */ Search)
+/* harmony export */ });
+/* harmony import */ var _emotion_react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @emotion/react */ "./node_modules/@emotion/react/dist/emotion-react.browser.development.esm.js");
+/* harmony import */ var _styles_root__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @styles/root */ "./src/web/styles/root.ts");
+
+
+const Root = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
+    backgroundColor: _styles_root__WEBPACK_IMPORTED_MODULE_0__.Colors.black,
+    display: "flex",
+    width: "-webkit-fill-available",
+    height: "50px",
+    padding: "10px",
+    margin: "10px 0 10px 0",
+    borderRadius: "10px",
+});
+const Search = (0,_emotion_react__WEBPACK_IMPORTED_MODULE_1__.css)({
+    width: "300px",
+    height: "-webkit-fill-available",
+    borderRadius: "10px",
+    padding: "0 13px 0 13px",
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    border: `4px solid ${_styles_root__WEBPACK_IMPORTED_MODULE_0__.Colors.grey}`,
+    color: _styles_root__WEBPACK_IMPORTED_MODULE_0__.Colors.white,
 });
 
 

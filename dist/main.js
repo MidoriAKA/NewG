@@ -292,8 +292,11 @@ electron_1.app.whenReady().then(() => {
             db.all(sqlQuery, (err, rows) => {
                 if (err) {
                     console.error(err.message);
+                    res([{ ID: 0, title: "error", status: "error", lastUpdate: 0, openDate: 0, priority: "error", requester: "error", assignedToPerson: "error", assignedToGroup: "error", category: "error", approvalStatus: "error", timeToSolution: "error" }]);
                 }
-                res(rows);
+                else {
+                    res(rows);
+                }
             });
         });
     });

@@ -1,3 +1,5 @@
+import { ITicket } from "./tickets";
+
 export interface ITitlebarEvents {
   minimize: () => void;
   maximize: () => void;
@@ -8,7 +10,7 @@ export  interface IScrappedGlpiDatas {
 }
 
 export interface IGetGlpisDatas {
-  getData: (sqlQuery: string) => Promise<any>;
+  getData: (sqlQuery: string) => Promise<ITicket[]>;
 }
 
 declare global {

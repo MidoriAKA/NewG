@@ -12,4 +12,5 @@ interface ITicketElementsContext {
   setOrder: React.Dispatch<React.SetStateAction<string>>;
   showingTickets: ITicket[];
   setShowingTickets: React.Dispatch<React.SetStateAction<ITicket[]>>;
+  setSearchQuery: React.Dispatch<React.SetStateAction<string>>;
 }

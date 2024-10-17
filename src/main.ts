@@ -309,11 +309,13 @@ app.whenReady().then(() => {
   //DBからデータを取得してレンダラープロセスに送信
   ipcMain.handle("getGlpiDatas", async (event, sqlQuery) => {
     return new Promise(res => {
-      db.all(sqlQuery, (err: any, rows: any) => {
+      db.all(sqlQuery, (err: any, rows: ITicket) => {
         if (err) {
           console.error(err.message);
+          res([{ID: 0, title: "error", status: "error", lastUpdate: 0, openDate: 0, priority: "error", requester: "error", assignedToPerson: "error", assignedToGroup: "error", category: "error", approvalStatus: "error", timeToSolution: "error"}]);
+        } else {
+          res(rows);
         }
-        res(rows);
       });
     });
   });
