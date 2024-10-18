@@ -258,7 +258,7 @@ electron_1.app.whenReady().then(() => {
             ["criteria%5B1%5D%5Blink%5D=AND"],
             ["criteria%5B1%5D%5Bfield%5D=15"],
             ["criteria%5B1%5D%5Bsearchtype%5D=morethan"],
-            ["criteria%5B1%5D%5Bvalue%5D=-6MONTH"],
+            ["criteria%5B1%5D%5Bvalue%5D=-3MONTH"],
             ["display_type=-3"],
             ["export.x=11"],
             ["export.y=9"],
@@ -278,7 +278,7 @@ electron_1.app.whenReady().then(() => {
                 });
             }
             else {
-                console.log("execute 6MONTH");
+                console.log("execute 3MONTH");
                 await downloadCsv(requestURL, csvPath);
             }
         });
@@ -288,15 +288,33 @@ electron_1.app.whenReady().then(() => {
     });
     //DBからデータを取得してレンダラープロセスに送信
     electron_1.ipcMain.handle("getGlpiDatas", async (event, sqlQuery) => {
-        return new Promise(res => {
-            db.all(sqlQuery, (err, rows) => {
-                if (err) {
-                    console.error(err.message);
-                    res([{ ID: 0, title: "error", status: "error", lastUpdate: 0, openDate: 0, priority: "error", requester: "error", assignedToPerson: "error", assignedToGroup: "error", category: "error", approvalStatus: "error", timeToSolution: "error" }]);
-                }
-                else {
-                    res(rows);
-                }
+        const datas = {
+            length: Number,
+            datas: (Array)
+        };
+        const query = sqlQuery.join(" ");
+        const queryLength = [...sqlQuery];
+        queryLength.shift();
+        queryLength.unshift("SELECT COUNT(*) FROM ticketDatas");
+        queryLength.pop();
+        const queryLengthStr = queryLength.join(" ");
+        return new Promise((res, rej) => {
+            db.serialize(() => {
+                db.get(queryLengthStr, (err, row) => {
+                    if (err) {
+                        rej(err);
+                        return;
+                    }
+                    datas.length = row["COUNT(*)"];
+                    db.all(query, (err, rows) => {
+                        if (err) {
+                            rej(err);
+                            return;
+                        }
+                        datas.datas = rows;
+                        res(datas);
+                    });
+                });
             });
         });
     });

@@ -17,7 +17,6 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
   const [offset, setOffset] = useState<number>(0);
   const [orderBy, setOrderBy] = useState<TTicketColumn>("lastUpdate");
   const [order, setOrder] = useState<string>("DESC");
-  const [tickets, setTickets] = useState<ITicket[]>([]);
   const [showingTickets, setShowingTickets] = useState<ITicket[]>([]);
   const [intervalMs, setIntervalMs] = useState<number>(5000);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -28,27 +27,24 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
         case true:
           handleSearch(searchQuery)
             .then((data) => {
-              if (data[0].ID === 0) {
-                setTickets([]);
+              if (data.length === 0) {
+                setShowingTickets([]);
+                setTotalTicketsCount(0);
               } else {
-                setTickets(data);
                 setTotalTicketsCount(data.length);
-                setShowingTickets(data.slice(offset, offset + displayCount));
+                setShowingTickets(data.datas);
               }
             });
           break;
         default:
           getTicketsDatas()
             .then((data) => {
-              if (data[0].ID === 0) {
-                setTickets([]);
+              if (data.length === 0) {
+                setShowingTickets([]);
+                setTotalTicketsCount(0);
               } else {
-                setTickets(data);
                 setTotalTicketsCount(data.length);
-                setShowingTickets(data.slice(offset, offset + displayCount));
-                console.log("current page: ", currentPage);
-                console.log("display count: ", displayCount);
-                console.log("offset: ", offset);
+                setShowingTickets(data.datas);
               }
             });
           break;
@@ -73,89 +69,117 @@ export const TicketElementsContextProvider: React.FC<TAppProps> = ({ children })
     "SELECT * FROM ticketDatas",
     "ORDER BY",
     `${orderBy} ${order}`,
-    // `LIMIT ${displayCount} OFFSET ${(currentPage - 1) * displayCount}`,
+    `LIMIT ${displayCount} OFFSET ${(currentPage - 1) * displayCount}`,
   ];
+  const queryTemplateForSwitch = {
+    notAssigned: "WHERE assignedToPerson = ''",
+    closed: "WHERE status = 'Fechado'",
+    n1: "WHERE assignedToGroup = 'Nivel 1'",
+    n2Sup: "WHERE assignedToGroup = 'Nível 2 - Suporte'",
+    n2Tech: "WHERE assignedToGroup = 'Nível 2 - Tecnologia'",
+    systems: "WHERE assignedToGroup = 'Sistemas'"
+  }
   const getTicketsDatas = () => {
-    let sqlQuery = "";
+    let sqlQuery: string[] = queryTemplate;
     switch (currentActive) {
       case "allTickets":
-        sqlQuery = queryTemplate.join(" ");
         break;
       case "notAssigned":
-        queryTemplate.splice(1, 0, "WHERE assignedToPerson = ''");
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(queryTemplateForSwitch.notAssigned)) {
+          sqlQuery.splice(1, 0, queryTemplateForSwitch.notAssigned);
+        }
         break;
       case "closed":
-        queryTemplate.splice(1, 0, "WHERE status = 'Fechado'");
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(queryTemplateForSwitch.closed)) {
+          sqlQuery.splice(1, 0, queryTemplateForSwitch.closed);
+        }
         break;
       case "n1":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nivel 1'");
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(queryTemplateForSwitch.n1)) {
+          sqlQuery.splice(1, 0, queryTemplateForSwitch.n1);
+        }
         break;
       case "n2Sup":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Suporte'");
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(queryTemplateForSwitch.n2Sup)) {
+          sqlQuery.splice(1, 0, queryTemplateForSwitch.n2Sup);
+        }
         break;
       case "n2Tech":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Tecnologia'");
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(queryTemplateForSwitch.n2Tech)) {
+          sqlQuery.splice(1, 0, queryTemplateForSwitch.n2Tech);
+        }
         break;
       case "systems":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Sistemas'");
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(queryTemplateForSwitch.systems)) {
+          sqlQuery.splice(1, 0, queryTemplateForSwitch.systems);
+        }
         break;
     }
     return window.getGlpiDatas.getData(sqlQuery);
   }
 
   const handleSearch = (searchQuery: string) => {
-    let sqlQuery = "";
-    const serachTemplate = `
-      AND (
-            ID LIKE '%${searchQuery}%' OR
-            title LIKE '%${searchQuery}%' OR
-            requester LIKE '%${searchQuery}%' OR
-            assignedToPerson LIKE '%${searchQuery}%' OR
-            assignedToGroup LIKE '%${searchQuery}%'
-          )
-    `;
+    let sqlQuery: string[] = queryTemplate;
+    const searchTemplate = {
+      general: `
+        AND (
+              ID LIKE '%${searchQuery}%' OR
+              title LIKE '%${searchQuery}%' OR
+              requester LIKE '%${searchQuery}%' OR
+              assignedToPerson LIKE '%${searchQuery}%' OR
+              assignedToGroup LIKE '%${searchQuery}%'
+            )
+      `,
+      all: `
+        WHERE
+        ID LIKE '%${searchQuery}%' OR
+        title LIKE '%${searchQuery}%' OR
+        requester LIKE '%${searchQuery}%' OR
+        assignedToPerson LIKE '%${searchQuery}%' OR
+        assignedToGroup LIKE '%${searchQuery}%'
+      `,
+      notAssigned: "WHERE assignedToPerson = ''",
+      closed: "WHERE status = 'Fechado'",
+      n1: "WHERE assignedToGroup = 'Nivel 1'",
+      n2Sup: "WHERE assignedToGroup = 'Nível 2 - Suporte'",
+      n2Tech: "WHERE assignedToGroup = 'Nível 2 - Tecnologia'",
+      systems: "WHERE assignedToGroup = 'Sistemas'"
+    }
     switch (currentActive) {
       case "allTickets":
-        sqlQuery = `
-          SELECT * FROM ticketDatas
-          WHERE
-            ID LIKE '%${searchQuery}%' OR
-            title LIKE '%${searchQuery}%' OR
-            requester LIKE '%${searchQuery}%' OR
-            assignedToPerson LIKE '%${searchQuery}%' OR
-            assignedToGroup LIKE '%${searchQuery}%'
-          ORDER BY ${orderBy} ${order}
-        `;
+        if (!sqlQuery.includes(searchTemplate.all)) {
+          sqlQuery.splice(1, 0, searchTemplate.all);
+        }
         break;
       case "notAssigned":
-        queryTemplate.splice(1, 0, "WHERE assignedToPerson = ''" + serachTemplate);
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(searchTemplate.notAssigned)) {
+          sqlQuery.splice(1, 0, searchTemplate.notAssigned + searchTemplate.general);
+        }
         break;
       case "closed":
-        queryTemplate.splice(1, 0, "WHERE status = 'Fechado'" + serachTemplate);
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(searchTemplate.closed)) {
+          sqlQuery.splice(1, 0, searchTemplate.closed + searchTemplate.general);
+        }
         break;
       case "n1":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nivel 1'" + serachTemplate);
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(searchTemplate.n1)) {
+          sqlQuery.splice(1, 0, searchTemplate.n1 + searchTemplate.general);
+        }
         break;
       case "n2Sup":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Suporte'" + serachTemplate);
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(searchTemplate.n2Sup)) {
+          sqlQuery.splice(1, 0, searchTemplate.n2Sup + searchTemplate.general);
+        }
         break;
       case "n2Tech":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Tecnologia'" + serachTemplate);
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(searchTemplate.n2Tech)) {
+          sqlQuery.splice(1, 0, searchTemplate.n2Tech + searchTemplate.general);
+        }
         break;
       case "systems":
-        queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Sistemas'" + serachTemplate);
-        sqlQuery = queryTemplate.join(" ");
+        if (!sqlQuery.includes(searchTemplate.systems)) {
+          sqlQuery.splice(1, 0, searchTemplate.systems + searchTemplate.general);
+        }
         break;
     }
     return window.getGlpiDatas.getData(sqlQuery)

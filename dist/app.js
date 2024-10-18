@@ -37838,28 +37838,29 @@ const TicketsView = () => {
     const { showingTickets } = (0,_src_web_contexts_TicketElementsContext__WEBPACK_IMPORTED_MODULE_0__.useTicketElementsContext)();
     return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", { className: "tickets__container", css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Container, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("table", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.Table, children: [(0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("thead", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableHeader, children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.map((header, index) => {
                             return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("th", { children: header }, index));
-                        }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: showingTickets.map((ticketObj, index) => {
-                        const ticket = Object.entries(ticketObj);
-                        const tdElements = [];
-                        const ticketLength = ticket.length;
-                        for (let i = 0; i < ticketLength; i++) {
-                            switch (i) {
-                                case 1:
-                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell_Title, children: ticket[i][1] }, i));
-                                    break;
-                                case 3:
-                                case 4:
-                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1]
-                                            .toString()
-                                            .replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1/$2/$3 $4:$5') }, i));
-                                    break;
-                                default:
-                                    tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1] }, i));
-                                    break;
+                        }) }) }), (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tbody", { children: showingTickets.length === 0 ? ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { children: (0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { colSpan: _config_tableHeaders__WEBPACK_IMPORTED_MODULE_2__.tableHeaders.length, css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: "No tickets found" }) })) :
+                        showingTickets.map((ticketObj, index) => {
+                            const ticket = Object.entries(ticketObj);
+                            const tdElements = [];
+                            const ticketLength = ticket.length;
+                            for (let i = 0; i < ticketLength; i++) {
+                                switch (i) {
+                                    case 1:
+                                        tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell_Title, children: ticket[i][1] }, i));
+                                        break;
+                                    case 3:
+                                    case 4:
+                                        tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1]
+                                                .toString()
+                                                .replace(/(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})/, '$1/$2/$3 $4:$5') }, i));
+                                        break;
+                                    default:
+                                        tdElements.push((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("td", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableCell, children: ticket[i][1] }, i));
+                                        break;
+                                }
                             }
-                        }
-                        return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableRow, children: tdElements }, index));
-                    }) })] }) }));
+                            return ((0,_emotion_react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("tr", { css: _styles_components_MainArea_Tables__WEBPACK_IMPORTED_MODULE_1__.TableRow, children: tdElements }, index));
+                        }) })] }) }));
 };
 
 
@@ -38086,7 +38087,6 @@ const TicketElementsContextProvider = ({ children }) => {
     const [offset, setOffset] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(0);
     const [orderBy, setOrderBy] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("lastUpdate");
     const [order, setOrder] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("DESC");
-    const [tickets, setTickets] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
     const [showingTickets, setShowingTickets] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)([]);
     const [intervalMs, setIntervalMs] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(5000);
     const [searchQuery, setSearchQuery] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)("");
@@ -38096,29 +38096,26 @@ const TicketElementsContextProvider = ({ children }) => {
                 case true:
                     handleSearch(searchQuery)
                         .then((data) => {
-                        if (data[0].ID === 0) {
-                            setTickets([]);
+                        if (data.length === 0) {
+                            setShowingTickets([]);
+                            setTotalTicketsCount(0);
                         }
                         else {
-                            setTickets(data);
                             setTotalTicketsCount(data.length);
-                            setShowingTickets(data.slice(offset, offset + displayCount));
+                            setShowingTickets(data.datas);
                         }
                     });
                     break;
                 default:
                     getTicketsDatas()
                         .then((data) => {
-                        if (data[0].ID === 0) {
-                            setTickets([]);
+                        if (data.length === 0) {
+                            setShowingTickets([]);
+                            setTotalTicketsCount(0);
                         }
                         else {
-                            setTickets(data);
                             setTotalTicketsCount(data.length);
-                            setShowingTickets(data.slice(offset, offset + displayCount));
-                            console.log("current page: ", currentPage);
-                            console.log("display count: ", displayCount);
-                            console.log("offset: ", offset);
+                            setShowingTickets(data.datas);
                         }
                     });
                     break;
@@ -38139,88 +38136,116 @@ const TicketElementsContextProvider = ({ children }) => {
         "SELECT * FROM ticketDatas",
         "ORDER BY",
         `${orderBy} ${order}`,
-        // `LIMIT ${displayCount} OFFSET ${(currentPage - 1) * displayCount}`,
+        `LIMIT ${displayCount} OFFSET ${(currentPage - 1) * displayCount}`,
     ];
+    const queryTemplateForSwitch = {
+        notAssigned: "WHERE assignedToPerson = ''",
+        closed: "WHERE status = 'Fechado'",
+        n1: "WHERE assignedToGroup = 'Nivel 1'",
+        n2Sup: "WHERE assignedToGroup = 'Nível 2 - Suporte'",
+        n2Tech: "WHERE assignedToGroup = 'Nível 2 - Tecnologia'",
+        systems: "WHERE assignedToGroup = 'Sistemas'"
+    };
     const getTicketsDatas = () => {
-        let sqlQuery = "";
+        let sqlQuery = queryTemplate;
         switch (currentActive) {
             case "allTickets":
-                sqlQuery = queryTemplate.join(" ");
                 break;
             case "notAssigned":
-                queryTemplate.splice(1, 0, "WHERE assignedToPerson = ''");
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(queryTemplateForSwitch.notAssigned)) {
+                    sqlQuery.splice(1, 0, queryTemplateForSwitch.notAssigned);
+                }
                 break;
             case "closed":
-                queryTemplate.splice(1, 0, "WHERE status = 'Fechado'");
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(queryTemplateForSwitch.closed)) {
+                    sqlQuery.splice(1, 0, queryTemplateForSwitch.closed);
+                }
                 break;
             case "n1":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nivel 1'");
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(queryTemplateForSwitch.n1)) {
+                    sqlQuery.splice(1, 0, queryTemplateForSwitch.n1);
+                }
                 break;
             case "n2Sup":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Suporte'");
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(queryTemplateForSwitch.n2Sup)) {
+                    sqlQuery.splice(1, 0, queryTemplateForSwitch.n2Sup);
+                }
                 break;
             case "n2Tech":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Tecnologia'");
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(queryTemplateForSwitch.n2Tech)) {
+                    sqlQuery.splice(1, 0, queryTemplateForSwitch.n2Tech);
+                }
                 break;
             case "systems":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Sistemas'");
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(queryTemplateForSwitch.systems)) {
+                    sqlQuery.splice(1, 0, queryTemplateForSwitch.systems);
+                }
                 break;
         }
         return window.getGlpiDatas.getData(sqlQuery);
     };
     const handleSearch = (searchQuery) => {
-        let sqlQuery = "";
-        const serachTemplate = `
-      AND (
-            ID LIKE '%${searchQuery}%' OR
-            title LIKE '%${searchQuery}%' OR
-            requester LIKE '%${searchQuery}%' OR
-            assignedToPerson LIKE '%${searchQuery}%' OR
-            assignedToGroup LIKE '%${searchQuery}%'
-          )
-    `;
+        let sqlQuery = queryTemplate;
+        const searchTemplate = {
+            general: `
+        AND (
+              ID LIKE '%${searchQuery}%' OR
+              title LIKE '%${searchQuery}%' OR
+              requester LIKE '%${searchQuery}%' OR
+              assignedToPerson LIKE '%${searchQuery}%' OR
+              assignedToGroup LIKE '%${searchQuery}%'
+            )
+      `,
+            all: `
+        WHERE
+        ID LIKE '%${searchQuery}%' OR
+        title LIKE '%${searchQuery}%' OR
+        requester LIKE '%${searchQuery}%' OR
+        assignedToPerson LIKE '%${searchQuery}%' OR
+        assignedToGroup LIKE '%${searchQuery}%'
+      `,
+            notAssigned: "WHERE assignedToPerson = ''",
+            closed: "WHERE status = 'Fechado'",
+            n1: "WHERE assignedToGroup = 'Nivel 1'",
+            n2Sup: "WHERE assignedToGroup = 'Nível 2 - Suporte'",
+            n2Tech: "WHERE assignedToGroup = 'Nível 2 - Tecnologia'",
+            systems: "WHERE assignedToGroup = 'Sistemas'"
+        };
         switch (currentActive) {
             case "allTickets":
-                sqlQuery = `
-          SELECT * FROM ticketDatas
-          WHERE
-            ID LIKE '%${searchQuery}%' OR
-            title LIKE '%${searchQuery}%' OR
-            requester LIKE '%${searchQuery}%' OR
-            assignedToPerson LIKE '%${searchQuery}%' OR
-            assignedToGroup LIKE '%${searchQuery}%'
-          ORDER BY ${orderBy} ${order}
-        `;
+                if (!sqlQuery.includes(searchTemplate.all)) {
+                    sqlQuery.splice(1, 0, searchTemplate.all);
+                }
                 break;
             case "notAssigned":
-                queryTemplate.splice(1, 0, "WHERE assignedToPerson = ''" + serachTemplate);
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(searchTemplate.notAssigned)) {
+                    sqlQuery.splice(1, 0, searchTemplate.notAssigned + searchTemplate.general);
+                }
                 break;
             case "closed":
-                queryTemplate.splice(1, 0, "WHERE status = 'Fechado'" + serachTemplate);
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(searchTemplate.closed)) {
+                    sqlQuery.splice(1, 0, searchTemplate.closed + searchTemplate.general);
+                }
                 break;
             case "n1":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nivel 1'" + serachTemplate);
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(searchTemplate.n1)) {
+                    sqlQuery.splice(1, 0, searchTemplate.n1 + searchTemplate.general);
+                }
                 break;
             case "n2Sup":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Suporte'" + serachTemplate);
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(searchTemplate.n2Sup)) {
+                    sqlQuery.splice(1, 0, searchTemplate.n2Sup + searchTemplate.general);
+                }
                 break;
             case "n2Tech":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Nível 2 - Tecnologia'" + serachTemplate);
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(searchTemplate.n2Tech)) {
+                    sqlQuery.splice(1, 0, searchTemplate.n2Tech + searchTemplate.general);
+                }
                 break;
             case "systems":
-                queryTemplate.splice(1, 0, "WHERE assignedToGroup = 'Sistemas'" + serachTemplate);
-                sqlQuery = queryTemplate.join(" ");
+                if (!sqlQuery.includes(searchTemplate.systems)) {
+                    sqlQuery.splice(1, 0, searchTemplate.systems + searchTemplate.general);
+                }
                 break;
         }
         return window.getGlpiDatas.getData(sqlQuery);
