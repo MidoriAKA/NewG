@@ -9,8 +9,12 @@ export  interface IScrappedGlpiDatas {
   receiveData: (callback: (data: Array<any>) => void) => void;
 }
 
+interface IResponseOfGetGlpiDatas {
+  length: number;
+  datas: ITicket[];
+}
 export interface IGetGlpisDatas {
-  getData: (sqlQuery: string) => Promise<ITicket[]>;
+  getData: (sqlQuery: string[]) => Promise<IResponseOfGetGlpiDatas>;
 }
 
 declare global {
